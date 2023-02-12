@@ -61,8 +61,8 @@ public class Game {
             ter.initialize(width, height); // Resets the screen setting
             if (inputLower == 'n') { // Resets loadPhrase and world tile to the initial state
                 loadPhrase = "";
-                gw.newStart(TETile.copyOf(getWorldGenerated()));
             }
+            gw.newStart(TETile.copyOf(getWorldGenerated()));
             gameScreen(loadPhrase);
         }
     }
@@ -80,8 +80,14 @@ public class Game {
             }
             input = StdDraw.nextKeyTyped();
             input = Character.toLowerCase(input);
+
+            // If input is q, do not cache the character to the load Phrase.
+            if (input == 'q') {
+                quit = true;
+                break;
+            }
             loadPhrase += input; // Updates cache
-            updateScreen(input);
+            updateScreen(input); // Updates the screen with given input
         }
     }
 
@@ -95,8 +101,6 @@ public class Game {
             gw.update(-1, 0);
         } else if (input == 'd') {
             gw.update(1, 0);
-        } else if (input == 'q') {
-            quit = true;
         }
     }
 
@@ -108,15 +112,13 @@ public class Game {
             ch.add(c);
         }
 
-        // Delete q from the end of the list
-        ch.remove(ch.size() - 1);
-        ch.remove(ch.size() - 1);
-
+        // Iterate over the cached characters and move accordingly
         for (char c : ch) {
             updateScreen(c);
         }
     }
 
+    // Get world generated
     public TETile[][] getWorldGenerated() {
         return worldGenerated;
     }
