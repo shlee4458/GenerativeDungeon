@@ -25,6 +25,7 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
         super.move(x, y, TILETYPE);
     }
 
+    @Override
     /* Move function is called every two turns */
     public void update(int x, int y) {
         if (onOff == 0) {  // Move every two turns

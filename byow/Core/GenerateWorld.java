@@ -79,6 +79,13 @@ public class GenerateWorld {
         return worldState();
     }
 
+    /* Changes worldState to given state when the gamer starts a new game */
+    public void newStart(TETile[][] tiles) {
+        this.worldState = tiles;
+        avatar.newStart();
+        ghost.newStart();
+    }
+
     /* Get Random */
     public Random getRandom() {
         return random;

@@ -21,6 +21,7 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
         super.move(x, y, TILETYPE);
     }
 
+    @Override
     public void update(int x, int y) {
         move(x, y, TILETYPE);
     }

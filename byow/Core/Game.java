@@ -33,7 +33,8 @@ public class Game {
         /* Generate world */
         gw = new GenerateWorld(width, height, initialWorld, this.random);
         if (worldGenerated == null) {
-            worldGenerated = gw.generate(); // cache the initial world created
+            initialWorld = gw.generate();
+            worldGenerated = TETile.copyOf(initialWorld); // cache the initial world created
         }
 
         /* Load Screen initialize */
@@ -58,8 +59,9 @@ public class Game {
             char inputLower = Character.toLowerCase(gameOption);
 
             ter.initialize(width, height); // Resets the screen setting
-            if (inputLower == 'n') {
+            if (inputLower == 'n') { // Resets loadPhrase and world tile to the initial state
                 loadPhrase = "";
+                gw.newStart(TETile.copyOf(getWorldGenerated()));
             }
             gameScreen(loadPhrase);
         }
@@ -74,7 +76,7 @@ public class Game {
 
         while (!quit) {
             while (!StdDraw.hasNextKeyTyped()) {
-                ter.renderFrame(worldGenerated);
+                ter.renderFrame(initialWorld);
             }
             input = StdDraw.nextKeyTyped();
             input = Character.toLowerCase(input);
@@ -107,6 +109,7 @@ public class Game {
         }
 
         // Delete q from the end of the list
+        ch.remove(ch.size() - 1);
         ch.remove(ch.size() - 1);
 
         for (char c : ch) {

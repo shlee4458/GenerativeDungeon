@@ -12,4 +12,6 @@ public interface MovingObjectInterface {
 
     int getXPos();
     int getYPos();
+
+    void update(int x, int y);
 }

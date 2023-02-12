@@ -10,6 +10,8 @@ public class MovingObject implements MovingObjectInterface {
     int height;
     int xPos;
     int yPos;
+    int initialXPos; // Caches initial starting x position. Used when user restarts the game.
+    int initialYPos; // Caches initial starting y position. Used when user restarts the game.
     int hp;
     Random random;
     private TETile tileType = Tileset.SAND;
@@ -43,6 +45,8 @@ public class MovingObject implements MovingObjectInterface {
         }
         this.xPos = x;
         this.yPos = y;
+        this.initialXPos = x;
+        this.initialYPos = y;
         tiles[x][y] = tileType;
     }
 
@@ -54,6 +58,18 @@ public class MovingObject implements MovingObjectInterface {
         int newX = xPos + x;
         int newY = yPos + y;
         return !tiles[newX][newY].equals(Tileset.WALL);
+    }
+
+    public void update(int x, int y) {
+    }
+
+
+    public void newStart() {
+        int updateX = initialXPos - xPos;
+        int updateY = initialYPos - yPos;
+        update(updateX, updateY);
+        xPos = initialXPos;
+        yPos = initialYPos;
     }
 
     public int getXPos() {
