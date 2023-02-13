@@ -25,6 +25,7 @@ public class Node {
 
         // Create a new node
         Node newNode = new Node(newX, newY, newDist);
+        newNode.getVisited().addAll(getVisited());
         newNode.updateVisited(direction);
 
         return newNode;
@@ -32,7 +33,22 @@ public class Node {
 
     /* Update ArrayList of visited directions */
     public void updateVisited(char c) {
-        visited.addAll(this.visited);
         visited.add(c);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getDist() {
+        return dist;
+    }
+
+    public ArrayList<Character> getVisited() {
+        return visited;
     }
 }

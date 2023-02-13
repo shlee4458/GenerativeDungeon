@@ -26,7 +26,9 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
     }
 
     @Override
-    /* Move function is called every two turns */
+    /* Move function is called every two turns
+    * @Param int x: x position of the target
+    * @Param int y: y position of the target */
     public void update(int x, int y) {
         if (onOff == 0) {  // Move every two turns
             onOff = 1;
@@ -37,5 +39,14 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
             onOff = 0;
             move(xMove, yMove, TILETYPE);
         }
+    }
+
+    @Override
+    public void newStart() {
+        int updateX = initialXPos - xPos;
+        int updateY = initialYPos - yPos;
+        super.move(updateX, updateY, TILETYPE);
+        xPos = initialXPos;
+        yPos = initialYPos;
     }
 }

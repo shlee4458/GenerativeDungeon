@@ -55,20 +55,6 @@
       <module />
       <method />
     </configuration>
-    <configuration name="DemoInputSource" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="byow.InputDemo.DemoInputSource" />
-      <module name="proj3" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="byow.InputDemo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="byow.Core.Main" />
       <module name="proj3" />
@@ -120,6 +106,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestgetShortestPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proj3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="byow.Core.Graph.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="byow.Core.Graph" />
+      <option name="MAIN_CLASS_NAME" value="byow.Core.Graph.TestgetShortestPath" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -161,8 +163,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.DemoInputSource" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.TestgetShortestPath" />
       <item itemvalue="JUnit.TestGraph" />
       <item itemvalue="JUnit.TestRoom" />
       <item itemvalue="JUnit.byow.Core in proj3" />
@@ -170,10 +172,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TestgetShortestPath" />
         <item itemvalue="JUnit.TestGraph" />
         <item itemvalue="JUnit.TestRoom" />
         <item itemvalue="JUnit.byow.Core in proj3" />
-        <item itemvalue="Application.DemoInputSource" />
       </list>
     </recent_temporary>
   </component>

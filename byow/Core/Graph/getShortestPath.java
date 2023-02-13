@@ -27,11 +27,14 @@ public class getShortestPath {
         /* Create tiles with default visited boolean values */
         createTiles();
     }
+
+    /* Get next move of ghost given the ghost`s current position and the target position */
     public char getNextMove(int sX, int sY, int tX, int tY) {
-        char c = ' ';
-        Node updatedSource = source.update(sX, sY, 0,c);
+        char c = 'a';
+        Node updatedSource = source.update(sX, sY, 0, c);
         queue.clear();
         queue.add(updatedSource);
+        tilesVisited = copyOf(cacheTilesVisited);
         tilesVisited[sX][sY] = true;
 
         while (!queue.isEmpty()) {
@@ -57,12 +60,12 @@ public class getShortestPath {
 
             // If left is valid, add to the queue
             if (isValid(n.x, n.y, -1, 0)) {
-                queue.add(n.update(1,0,1,'a'));
+                queue.add(n.update(-1,0,1,'a'));
             }
             
             // If right is valid, add to the queue
             if (isValid(n.x, n.y, 1, 0)) {
-                queue.add(n.update(-1,0,1,'d'));
+                queue.add(n.update(1,0,1,'d'));
             }
         }
         return c;
@@ -73,15 +76,17 @@ public class getShortestPath {
         int newX = sX + mX;
         int newY = sY + mY;
 
-        return (!tilesVisited[newX][newY] && newX > 0 && newY > 0
-                && newY < height - 1 && newX < width - 1);
+        return (newX > 0 && newY > 0
+                && newY < height - 1 && newX < width - 1 && !tilesVisited[newX][newY]);
     }
 
+    /* Create tiles Visited
+    *  Input true if the tile contains nothing tile or wall tile */
     public void createTiles() {
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
                 if (tiles[x][y].equals(Tileset.NOTHING) || tiles[x][y].equals(Tileset.WALL)) {
-                    tilesVisited[x][y] = true; // Set Nothing tiles as visited tiles
+                    tilesVisited[x][y] = true; // Set Nothing tiles and Wall tiles as visited tiles
                 } else {
                     tilesVisited[x][y] = false;
                 }
@@ -90,6 +95,7 @@ public class getShortestPath {
         cacheTilesVisited = copyOf(tilesVisited);
     }
 
+    /* Create a copy of tiles */
     public static boolean[][] copyOf(boolean[][] tiles) {
         if (tiles == null) {
             return null;
@@ -103,5 +109,9 @@ public class getShortestPath {
             i += 1;
         }
         return copy;
+    }
+
+    public boolean[][] getTilesVisited() {
+        return tilesVisited;
     }
 }

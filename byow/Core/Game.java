@@ -122,5 +122,4 @@ public class Game {
     public TETile[][] getWorldGenerated() {
         return worldGenerated;
     }
-
 }
