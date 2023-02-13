@@ -8,7 +8,6 @@ import byow.TileEngine.Tileset;
 import java.util.Random;
 
 public class Ghost extends MovingObject implements MovingObjectInterface {
-
     private static final int HP = 50;
     private static final TETile TILETYPE = Tileset.GHOST;
     getShortestPath shortestPath;

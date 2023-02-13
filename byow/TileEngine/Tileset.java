@@ -21,10 +21,10 @@ public class Tileset {
     public static final TETile AVATAR = new TETile(',', Color.white, Color.black, "you",
             "/img/cat.jpg");
     public static final TETile WALL = new TETile('#', new Color(216, 128, 128), Color.darkGray,
-            "Wall","/img/tile/brown.jpg");
-    public static final TETile FLOOR = new TETile(' ', new Color(128, 192, 128), Color.black,
-            "floor");
-    public static final TETile NOTHING = new TETile(' ', new Color(30,30,30), new Color(30,40,30), "nothing");
+            "Wall","/img/tile/wall.jpg");
+    public static final TETile FLOOR = new TETile(' ', new Color(128, 192, 128), Color.black ,
+            "floor", "/img/tile/floornew.jpg");
+    public static final TETile NOTHING = new TETile(' ', new Color(255,255,255), new Color(0,0,0), "nothing");
     public static final TETile GRASS = new TETile('"', Color.green, Color.black, "grass");
     public static final TETile WATER = new TETile('≈', Color.blue, Color.black, "water");
     public static final TETile FLOWER = new TETile('❀', Color.magenta, Color.pink, "flower");
@@ -39,6 +39,10 @@ public class Tileset {
             "/img/ghost.jpg");
     public static final TETile FISH = new TETile(',', Color.green, Color.black, "fish",
             "/img/fish.png");
+    public static final TETile STAIRS = new TETile(',', Color.green, Color.black, "stairs",
+            "/img/tile/stairsnew.jpg");
+
+
 }
 
 
