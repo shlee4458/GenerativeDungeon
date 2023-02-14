@@ -3,6 +3,8 @@ import byow.Core.BackGround.*;
 import byow.Core.Graph.*;
 import byow.Core.MovingObject.*;
 import byow.TileEngine.*;
+
+import javax.xml.stream.events.StartDocument;
 import java.util.*;
 
 public class GenerateWorld {
@@ -42,6 +44,12 @@ public class GenerateWorld {
         room.drawAll();
     }
 
+    /* Generate a single staircase that leads to the next floor */
+    public void generateStaircase() {
+        Staircase staircase = new Staircase(width, height, worldState, random);
+        staircase.draw();
+    }
+
     /* Generate hallways between rooms */
     public void generateHallway() {
 
@@ -73,6 +81,7 @@ public class GenerateWorld {
     /* Generate World with rooms and corridors */
     public TETile[][] generate() {
         generateRoom();
+        generateStaircase();
         generateHallway();
         generateAvatar();
         generateGhost();

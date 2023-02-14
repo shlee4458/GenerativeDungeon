@@ -10,14 +10,16 @@ public class Engine {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 50;
     public static final int HEIGHT = 30;
-    private static final Random RANDOM = new Random(1234);
+    private static Random random;
 
-    /**
-     * Method used for exploring a fresh world. This method should handle all inputs,
-     * including inputs from the main menu.
-     */
+    /* Constructor */
+    public Engine(int seed) {
+        this.random =  new Random(seed);
+    }
+
+    /* Initiate game class and starts the game */
     public void interactWithKeyboard() {
-        Game g = new Game(WIDTH, HEIGHT, ter, RANDOM);
+        Game g = new Game(WIDTH, HEIGHT, ter, random);
         g.startGame();
     }
 }

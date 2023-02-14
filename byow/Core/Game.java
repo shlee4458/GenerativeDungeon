@@ -20,6 +20,8 @@ public class Game {
     GenerateWorld gw;
     LoadScreenRenderer ls;
 
+    int floor;
+
 
     /* Constructor */
     public Game(int width, int height, TERenderer ter, Random random) {
@@ -29,6 +31,7 @@ public class Game {
         this.random = random;
         this.quit = false;
         initialWorld = new TETile[width][height];
+        this.floor = 1;
 
         /* Generate world */
         gw = new GenerateWorld(width, height, initialWorld, this.random);

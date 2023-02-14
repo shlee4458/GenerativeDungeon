@@ -186,7 +186,6 @@ public class TETile {
             copy[i] = Arrays.copyOf(column, column.length);
             i += 1;
         }
-
         return copy;
     }
 }
