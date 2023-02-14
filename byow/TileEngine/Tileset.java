@@ -1,20 +1,14 @@
 package byow.TileEngine;
 
 import java.awt.Color;
-import java.net.*;
+import java.util.*;
 
 /**
  * Contains constant tile objects, to avoid having to remake the same tiles in different parts of
  * the code.
  *
- * You are free to (and encouraged to) create and add your own tiles to this file. This file will
- * be turned in with the rest of your code.
- *
  * Ex:
  *      world[x][y] = Tileset.FLOOR;
- *
- * The style checker may crash when you try to style check this file due to use of unicode
- * characters. This is OK.
  */
 
 public class Tileset {
@@ -41,8 +35,7 @@ public class Tileset {
             "/img/fish.png");
     public static final TETile STAIRS = new TETile(',', Color.green, Color.black, "stairs",
             "/img/tile/stairsnew.jpg");
-
-
+    public static ArrayList<TETile> fixedObject = new ArrayList<>(List.of(STAIRS));
 }
 
 

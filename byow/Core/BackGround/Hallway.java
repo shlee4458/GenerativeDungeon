@@ -91,8 +91,10 @@ public class Hallway implements BackGround {
         int endCol = Position.maxCol(from, to);
 
         for (int col = startCol; col < endCol; col++) {
-            tiles[col][row] = Tileset.FLOOR;
-            addWall(tiles, col, row, true);
+            if (!Tileset.fixedObject.contains(tiles[col][row])) {
+                tiles[col][row] = Tileset.FLOOR;
+                addWall(tiles, col, row, true);
+            }
         }
     }
 
@@ -111,8 +113,10 @@ public class Hallway implements BackGround {
         int endRow = Position.maxRow(from, to);
 
         for (int row = startRow; row < endRow; row++) {
-            tiles[col][row] = Tileset.FLOOR;
-            addWall(tiles, col, row, false);
+            if (!Tileset.fixedObject.contains(tiles[col][row])) {
+                tiles[col][row] = Tileset.FLOOR;
+                addWall(tiles, col, row, false);
+            }
         }
     }
 

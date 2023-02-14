@@ -12,6 +12,7 @@ public class Game {
     String loadPhrase;  // cache for loading
     int width;
     int height;
+    int floor;
     boolean quit;
     TERenderer ter;
     Random random;
@@ -19,9 +20,6 @@ public class Game {
     TETile[][] worldGenerated = null;
     GenerateWorld gw;
     LoadScreenRenderer ls;
-
-    int floor;
-
 
     /* Constructor */
     public Game(int width, int height, TERenderer ter, Random random) {
@@ -109,7 +107,7 @@ public class Game {
         // check whether to move one floor up
         if (gw.isFloorUp()) {
             floor += 1;
-            generateWorld();
+            generateWorld(); // regenerate the world with a floor increased by one
         }
     }
 
