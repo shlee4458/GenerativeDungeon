@@ -92,6 +92,8 @@ public class Position {
             pos.changePos(-1,0);
         } else if (c == 'd') {
             pos.changePos(1,0);
+        } else {
+            pos.changePos(0, 0);
         }
         return pos;
     }

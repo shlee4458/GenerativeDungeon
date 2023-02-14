@@ -63,7 +63,6 @@ public class MovingObject implements MovingObjectInterface {
     public void update(int x, int y) {
     }
 
-
     public void newStart() {
         int updateX = initialXPos - xPos;
         int updateY = initialYPos - yPos;

@@ -30,6 +30,12 @@ public class getShortestPath {
 
     /* Get next move of ghost given the ghost`s current position and the target position */
     public char getNextMove(int sX, int sY, int tX, int tY) {
+
+        // Corner case; returns non-directional value if source and target position is the same
+        if (sX == tX && sY == tY) {
+            return ' ';
+        }
+
         char c = 'a';
         Node updatedSource = source.update(sX, sY, 0, c);
         queue.clear();
