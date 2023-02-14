@@ -20,6 +20,7 @@ public class Engine {
     /* Initiate game class and starts the game */
     public void interactWithKeyboard() {
         Game g = new Game(WIDTH, HEIGHT, ter, random);
+        g.generateWorld();
         g.startGame();
     }
 }

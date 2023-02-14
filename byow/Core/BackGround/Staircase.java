@@ -10,6 +10,8 @@ public class Staircase {
 
     int width;
     int height;
+    int xPos;
+    int yPos;
     TETile[][] tiles;
     Random random;
 
@@ -39,6 +41,14 @@ public class Staircase {
     /* draws the staircase in the found position */
     public void draw() {
         Position foundPos = find();
-        tiles[foundPos.getX()][foundPos.getY()] = Tileset.STAIRS;
+        int x = foundPos.getX();
+        int y = foundPos.getY();
+        this.xPos = x;
+        this.yPos = y;
+        tiles[xPos][yPos] = Tileset.STAIRS;
+    }
+
+    public Position getPosition() {
+        return new Position(xPos, yPos);
     }
 }

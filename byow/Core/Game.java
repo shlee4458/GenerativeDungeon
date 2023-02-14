@@ -33,16 +33,16 @@ public class Game {
         initialWorld = new TETile[width][height];
         this.floor = 1;
 
-        /* Generate world */
-        gw = new GenerateWorld(width, height, initialWorld, this.random);
-        if (worldGenerated == null) {
-            initialWorld = gw.generate();
-            worldGenerated = TETile.copyOf(initialWorld); // cache the initial world created
-        }
-
         /* Load Screen initialize */
         ls = new LoadScreenRenderer();
         ls.initialize(width, height);
+    }
+
+    /* Generate World */
+    public void generateWorld() {
+        gw = new GenerateWorld(width, height, initialWorld, floor, this.random);
+        initialWorld = gw.generate();
+        worldGenerated = TETile.copyOf(initialWorld); // cache the initial world created
     }
 
     /* starts game */
@@ -104,6 +104,12 @@ public class Game {
             gw.update(-1, 0);
         } else if (input == 'd') {
             gw.update(1, 0);
+        }
+
+        // check whether to move one floor up
+        if (gw.isFloorUp()) {
+            floor += 1;
+            generateWorld();
         }
     }
 

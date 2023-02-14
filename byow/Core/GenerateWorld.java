@@ -4,30 +4,34 @@ import byow.Core.Graph.*;
 import byow.Core.MovingObject.*;
 import byow.TileEngine.*;
 
-import javax.xml.stream.events.StartDocument;
 import java.util.*;
 
 public class GenerateWorld {
     int width;
     int height;
+    int floor;
+    int numOfRooms;
     TETile[][] worldState;
     Random random;
     Room room;
     Hallway hallway;
+    Staircase staircase;
     Avatar avatar;
     Ghost ghost;
 
     /* Constructor */
-    public GenerateWorld(int width, int height, TETile[][] worldState, Random random) {
+    public GenerateWorld(int width, int height, TETile[][] worldState, int floor, Random random) {
         this.width = width;
         this.height = height;
         this.worldState = worldState;
         this.random = random;
+        this.floor = floor;
+        this.numOfRooms = floor * 1 + 6; // number of rooms increase by 1 for every floor
 
         fillWithBlank(worldState); // fill with blank
 
         /* Instantiate room object */
-        room = new Room(width, height, worldState, 8, random);
+        room = new Room(width, height, worldState, numOfRooms, random);
     }
 
     /* Fill with nothing tile */
@@ -46,7 +50,7 @@ public class GenerateWorld {
 
     /* Generate a single staircase that leads to the next floor */
     public void generateStaircase() {
-        Staircase staircase = new Staircase(width, height, worldState, random);
+        staircase = new Staircase(width, height, worldState, random);
         staircase.draw();
     }
 
@@ -93,6 +97,11 @@ public class GenerateWorld {
         this.worldState = tiles;
         avatar.newStart();
         ghost.newStart();
+    }
+
+    /* Check whether to move a floor up*/
+    public boolean isFloorUp() {
+        return Position.samePosition(avatar.getPosition(), staircase.getPosition());
     }
 
     /* Get Random */

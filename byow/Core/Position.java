@@ -97,4 +97,9 @@ public class Position {
         }
         return pos;
     }
+
+    /* Returns whether two positions have the same x-axis value and y-axis value */
+    public static boolean samePosition(Position a, Position b) {
+        return a.getX() == b.getX() && a.getY() == b.getY();
+    }
 }

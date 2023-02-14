@@ -1,5 +1,6 @@
 package byow.Core.MovingObject;
 
+import byow.Core.Position;
 import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 
@@ -29,5 +30,10 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
     /* Obtain an item */
     public void obtain() {
 
+    }
+
+    /* Get position of the avatar */
+    public Position getPosition() {
+        return new Position(getXPos(), getYPos());
     }
 }

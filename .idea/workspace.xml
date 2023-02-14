@@ -58,7 +58,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="byow.Core.Main" />
       <module name="proj3" />
-      <option name="PROGRAM_PARAMETERS" value="1234" />
+      <option name="PROGRAM_PARAMETERS" value="123455" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="byow.Core.MovingObject.*" />
