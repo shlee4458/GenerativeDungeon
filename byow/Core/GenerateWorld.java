@@ -11,6 +11,7 @@ public class GenerateWorld {
     int height;
     int floor;
     int numOfRooms;
+    int numOfGhosts;
     TETile[][] worldState;
     Random random;
     Room room;
@@ -18,6 +19,7 @@ public class GenerateWorld {
     Staircase staircase;
     Avatar avatar;
     Ghost ghost;
+    ArrayList<Ghost> ghosts;
 
     /* Constructor */
     public GenerateWorld(int width, int height, TETile[][] worldState, int floor, Random random) {
@@ -27,6 +29,8 @@ public class GenerateWorld {
         this.random = random;
         this.floor = floor;
         this.numOfRooms = floor * 1 + 6; // number of rooms increase by 1 for every floor
+        this.ghosts = new ArrayList<>();
+        this.numOfGhosts = floor / 2 + 1; // number of ghosts increases in every 2 floors
 
         fillWithBlank(worldState); // fill with blank
 
@@ -73,13 +77,17 @@ public class GenerateWorld {
 
     /* Generate a Ghost */
     public void generateGhost() {
-        ghost = new Ghost(worldState, random);
+        for (int num = 0; num < numOfGhosts; num++) {
+            ghosts.add(new Ghost(worldState, random));
+        }
     }
 
     /* Update the current state of the world */
     public void update(int x, int y) {
         avatar.update(x, y);
-        ghost.update(avatar.getXPos(), avatar.getYPos());
+        for (Ghost g : ghosts) {
+            g.update(avatar.getXPos(), avatar.getYPos());
+        }
     }
 
     /* Generate World with rooms and corridors */
@@ -96,7 +104,9 @@ public class GenerateWorld {
     public void newStart(TETile[][] tiles) {
         this.worldState = tiles;
         avatar.newStart();
-        ghost.newStart();
+        for (Ghost g : ghosts) {
+            g.newStart();
+        }
     }
 
     /* Check whether to move a floor up*/
