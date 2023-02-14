@@ -14,6 +14,7 @@ public class Game {
     int height;
     int floor;
     boolean quit;
+    int numOfSteps;
     TERenderer ter;
     Random random;
     TETile[][] initialWorld;
@@ -30,6 +31,7 @@ public class Game {
         this.quit = false;
         initialWorld = new TETile[width][height];
         this.floor = 1;
+        this.numOfSteps = 0;
 
         /* Load Screen initialize */
         ls = new LoadScreenRenderer();
@@ -47,6 +49,7 @@ public class Game {
     public void startGame() {
         while (true) {
             quit = false;
+            numOfSteps = 0;
 
             // Initialize the default screen size
             ter.initialize(width, height);
@@ -56,8 +59,8 @@ public class Game {
                 ls.renderFrame();
             }
 
-            char gameOption = StdDraw.nextKeyTyped();
-            char inputLower = Character.toLowerCase(gameOption);
+            char input = StdDraw.nextKeyTyped();
+            char inputLower = Character.toLowerCase(input);
 
             ter.initialize(width, height); // Resets the screen setting
             if (inputLower == 'n') { // Resets loadPhrase and world tile to the initial state
@@ -75,6 +78,8 @@ public class Game {
             loadGame(s);
         }
 
+        // Moves according to the directional value user inputs;
+        // Increases the total step taken for every input
         while (!quit) {
             while (!StdDraw.hasNextKeyTyped()) {
                 ter.renderFrame(initialWorld);
@@ -85,8 +90,10 @@ public class Game {
             // If input is q, do not cache the character to the load Phrase.
             if (input == 'q') {
                 quit = true;
+                floor = 1;
                 break;
             }
+            numOfSteps += 1;
             loadPhrase += input; // Updates cache
             updateScreen(input); // Updates the screen with given input
         }
@@ -109,6 +116,9 @@ public class Game {
             floor += 1;
             generateWorld(); // regenerate the world with a floor increased by one
         }
+
+        // Updates the scoreboard
+
     }
 
     /* Load game */

@@ -8,8 +8,8 @@ import java.util.Random;
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
-    public static final int WIDTH = 50;
-    public static final int HEIGHT = 30;
+    public static final int WIDTH = 60;
+    public static final int HEIGHT = 40;
     private static Random random;
 
     /* Constructor */

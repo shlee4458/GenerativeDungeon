@@ -84,6 +84,12 @@ public class TERenderer {
      * @param world the 2D TETile[][] array to render
      */
     public void renderFrame(TETile[][] world) {
+        renderTiles(world);
+        renderScoreBoard(world);
+        StdDraw.show();
+    }
+
+    public void renderTiles(TETile[][] world) {
         int numXTiles = world.length;
         int numYTiles = world[0].length;
         StdDraw.clear(new Color(0, 0, 0));
@@ -96,6 +102,17 @@ public class TERenderer {
                 world[x][y].draw(x + xOffset, y + yOffset);
             }
         }
-        StdDraw.show();
+    }
+
+    public void renderScoreBoard(TETile[][] world) {
+
+        // Setup Pen
+        Font fontBig = new Font("TImesRoman", Font.ITALIC, 20);
+        StdDraw.setFont(fontBig);
+        StdDraw.setPenColor(255, 255, 255);
+
+        StdDraw.textRight(width * 0.95, height * 0.9,
+                "Steps: " + 3 + " / " + "Floor: " + 3 + " / " + "Fish: " + 3);
+
     }
 }

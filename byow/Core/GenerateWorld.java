@@ -18,7 +18,6 @@ public class GenerateWorld {
     Hallway hallway;
     Staircase staircase;
     Avatar avatar;
-    Ghost ghost;
     ArrayList<Ghost> ghosts;
 
     /* Constructor */
@@ -28,7 +27,7 @@ public class GenerateWorld {
         this.worldState = worldState;
         this.random = random;
         this.floor = floor;
-        this.numOfRooms = floor * 1 + 6; // number of rooms increase by 1 for every floor
+        this.numOfRooms = 8 + floor * 2; // number of rooms increase by 2 for every floor
         this.ghosts = new ArrayList<>();
         this.numOfGhosts = floor / 2 + 1; // number of ghosts increases in every 2 floors
 
