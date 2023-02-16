@@ -60,7 +60,6 @@ public class FixedObject {
 
     /* Redraws at the initial position when the game starts again */
     public void newStart() {
-        draw(xPos, yPos, floor);
         draw(initialXPos, initialYPos, tileType);
         xPos = initialXPos;
         yPos = initialYPos;

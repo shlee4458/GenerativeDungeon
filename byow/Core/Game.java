@@ -53,7 +53,6 @@ public class Game {
     public void startGame() {
         while (true) {
             quit = false;
-            numOfSteps = 0;
 
             // Initialize the default screen size
             ter.initialize(width, height);
@@ -68,6 +67,8 @@ public class Game {
 
             ter.initialize(width, height); // Resets the screen setting
             if (inputLower == 'n') { // Resets loadPhrase and world tile to the initial state
+                numOfSteps = 0;
+                floor = 1;
                 loadPhrase = "";
             }
             gw.newStart(TETile.copyOf(getWorldGenerated()));
@@ -94,7 +95,6 @@ public class Game {
             // If input is q, do not cache the character to the load Phrase.
             if (input == 'q') {
                 quit = true;
-                floor = 1;
                 break;
             }
             numOfSteps += 1;

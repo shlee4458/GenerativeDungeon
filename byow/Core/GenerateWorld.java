@@ -130,7 +130,7 @@ public class GenerateWorld {
         for (Ghost g : ghosts) {
             g.newStart();
         }
-        for (FixedObject obj : fixedObjects) {
+        for (FixedObject obj : fixedObjectsCache) {
             obj.newStart();
         }
     }
