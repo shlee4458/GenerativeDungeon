@@ -83,9 +83,9 @@ public class TERenderer {
      * the screen in tiles.
      * @param world the 2D TETile[][] array to render
      */
-    public void renderFrame(TETile[][] world) {
+    public void renderFrame(TETile[][] world, int floor, int numOfSteps, int numOfFishObtained, int hp) {
         renderTiles(world);
-        renderScoreBoard(world);
+        renderScoreBoard(floor, numOfSteps, numOfFishObtained, hp);
         StdDraw.show();
     }
 
@@ -104,7 +104,7 @@ public class TERenderer {
         }
     }
 
-    public void renderScoreBoard(TETile[][] world) {
+    public void renderScoreBoard(int floor, int numOfSteps, int hp, int numOfFishObtained) {
 
         // Setup Pen
         Font fontBig = new Font("TImesRoman", Font.ITALIC, 20);
@@ -112,7 +112,8 @@ public class TERenderer {
         StdDraw.setPenColor(255, 255, 255);
 
         StdDraw.textRight(width * 0.95, height * 0.9,
-                "Steps: " + 3 + " / " + "Floor: " + 3 + " / " + "Fish: " + 3);
-
+                "Steps: " + numOfSteps + " / " + "Floor: " + floor );
+        StdDraw.textLeft(width * 0.05, height * 0.9,
+                "HP: " + hp + " / " + "Fish: " + numOfFishObtained);
     }
 }

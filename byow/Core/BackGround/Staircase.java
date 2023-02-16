@@ -1,12 +1,13 @@
-package byow.Core;
+package byow.Core.BackGround;
 
 import byow.Core.FixedObject.FixedObject;
+import byow.Core.Position;
 import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 
 import java.util.Random;
 
-public class Staircase extends FixedObject {
+public class Staircase {
 
     int width;
     int height;

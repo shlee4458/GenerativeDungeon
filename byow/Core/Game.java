@@ -15,6 +15,8 @@ public class Game {
     int floor;
     boolean quit;
     int numOfSteps;
+    int fish;
+    int hp;
     TERenderer ter;
     Random random;
     TETile[][] initialWorld;
@@ -32,6 +34,8 @@ public class Game {
         initialWorld = new TETile[width][height];
         this.floor = 1;
         this.numOfSteps = 0;
+        this.fish = 0;
+        this.hp = 100;
 
         /* Load Screen initialize */
         ls = new LoadScreenRenderer();
@@ -40,7 +44,7 @@ public class Game {
 
     /* Generate World */
     public void generateWorld() {
-        gw = new GenerateWorld(width, height, initialWorld, floor, this.random);
+        gw = new GenerateWorld(width, height, initialWorld, floor, fish, hp, this.random);
         initialWorld = gw.generate();
         worldGenerated = TETile.copyOf(initialWorld); // cache the initial world created
     }
@@ -82,7 +86,7 @@ public class Game {
         // Increases the total step taken for every input
         while (!quit) {
             while (!StdDraw.hasNextKeyTyped()) {
-                ter.renderFrame(initialWorld);
+                ter.renderFrame(initialWorld, floor, numOfSteps, this.hp, this.fish);
             }
             input = StdDraw.nextKeyTyped();
             input = Character.toLowerCase(input);
@@ -117,8 +121,13 @@ public class Game {
             generateWorld(); // regenerate the world with a floor increased by one
         }
 
-        // Updates the scoreboard
-
+        // Checks whether avatar have obtained an item and calls related method;
+        // 1) removes obtained item from the existing item on the screen
+        // 2) add to the list of items that the avatar has acquired
+        if (gw.obtain()) {
+            fish += 1;
+            System.out.println("obtained");
+        }
     }
 
     /* Load game */
