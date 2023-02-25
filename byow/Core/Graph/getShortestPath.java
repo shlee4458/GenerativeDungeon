@@ -28,13 +28,15 @@ public class getShortestPath {
         createTiles();
     }
 
-    /* Get next move of ghost given the ghost`s current position and the target position */
+    /** Get next move of ghost given the ghost`s current position and the target position.
+     * @Param int sX, sY: source(ghost)`s x, y coordinate
+     * @Param int tX, tY: target(avatar)`s x coordinate
+     * @Return char: directional character */
     public char getNextMove(int sX, int sY, int tX, int tY) {
 
-        // Corner case; returns non-directional value if source and target position is the same
-        if (sX == tX && sY == tY) {
-            return ' ';
-        }
+        /* Corner case; returns non-directional value if source and target position is the same.
+        * The ghost does not move if avatar and the ghost are placed in the same tile. */
+        if (sX == tX && sY == tY) { return ' '; }
 
         char c = 'a';
         Node updatedSource = source.update(sX, sY, 0, c);

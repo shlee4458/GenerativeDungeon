@@ -9,7 +9,7 @@ import java.util.*;
 public class Game {
 
     /* Declare instance variables */
-    String loadPhrase;  // cache for loading
+    String loadPhrase;  // cache user input parsed when user requests to load the game
     int width;
     int height;
     int floor;
@@ -20,11 +20,11 @@ public class Game {
     TERenderer ter;
     Random random;
     TETile[][] initialWorld;
-    TETile[][] worldGenerated = null;
+    TETile[][] worldGenerated; // caches the current state of world, used when loading the game
     GenerateWorld gw;
     LoadScreenRenderer ls;
 
-    /* Constructor */
+    /** Constructor */
     public Game(int width, int height, TERenderer ter, Random random) {
         this.width = width;
         this.height = height;
@@ -37,57 +37,62 @@ public class Game {
         this.fish = 0;
         this.hp = 100;
 
-        /* Load Screen initialize */
+        /* Initialize Load Screen */
         ls = new LoadScreenRenderer();
         ls.initialize(width, height);
     }
 
-    /* Generate World */
+    /** Initiates GenerateWorld Class and calls generate method in the class instance. */
     public void generateWorld() {
         gw = new GenerateWorld(width, height, initialWorld, floor, fish, hp, this.random);
         initialWorld = gw.generate();
         worldGenerated = TETile.copyOf(initialWorld); // cache the initial world created
     }
 
-    /* starts game */
+    /* Starts Game or New Game after quitting the game. This part of the code is only executed
+    * when the game initially starts or when the user quits the game and starts the new game */
     public void startGame() {
         while (true) {
-            quit = false;
+            quit = false; // resets quit to false when the game restarts
 
-            // Initialize the default screen size
+            /* Initialize the default screen size */
             ter.initialize(width, height);
 
-            // Render loading screen until receives input
+            /* Render loading screen until receives input */
             while (!StdDraw.hasNextKeyTyped()) {
                 ls.renderFrame();
             }
+            ter.initialize(width, height); // initializes the game screen
 
+            /* Takes user input and executes accordingly, If the user input is n,
+            resets state variables and loadPhrase, and Generates a new dungeon. */
             char input = StdDraw.nextKeyTyped();
             char inputLower = Character.toLowerCase(input);
-
-            ter.initialize(width, height); // Resets the screen setting
-            if (inputLower == 'n') { // Resets loadPhrase and world tile to the initial state
-                numOfSteps = 0;
+            if (inputLower == 'n') { // Resets state variables and loadPhrase
                 floor = 1;
+                numOfSteps = 0;
+                fish = 0;
                 loadPhrase = "";
+                generateWorld(); // newly generates a dungeon
             }
-            gw.newStart(TETile.copyOf(getWorldGenerated()));
             gameScreen(loadPhrase);
         }
     }
 
-    /* Play game screen */
+    /** If the loadPhrase is not empty, calls the loadGame method. If there is no loadphrase --
+     *  user starts the game for the first time or restarts the game after quitting. */
     public void gameScreen(String s) {
         char input;
+
         if (s.length() > 0) {
             loadGame(s);
         }
 
-        // Moves according to the directional value user inputs;
-        // Increases the total step taken for every input
+        /* Moves according to the directional value user inputs;
+         * Increases the total step taken for every input */
         while (!quit) {
             while (!StdDraw.hasNextKeyTyped()) {
-                ter.renderFrame(initialWorld, floor, numOfSteps, this.hp, this.fish);
+                ter.renderFrame(initialWorld, floor, numOfSteps, hp, fish);
             }
             input = StdDraw.nextKeyTyped();
             input = Character.toLowerCase(input);
@@ -103,7 +108,25 @@ public class Game {
         }
     }
 
-    /* Update screen based on user input */
+    /** Load game */
+    public void loadGame(String s) {
+        /* Create an Arraylist of characters from the cached string */
+        ArrayList<Character> ch = new ArrayList<>();
+        for (char c : s.toCharArray()) {
+            ch.add(c);
+        }
+
+        /* Iterate over the cached characters and move accordingly */
+        for (char c : ch) {
+            updateScreen(c);
+        }
+    }
+
+    /* Update screen based on user input
+    * 1) w: moves the avatar up by 1
+    * 2) s: moves the avatar down by 1
+    * 2) s: moves the avatar right by 1
+    * 2) s: moves the avatar left by 1 */
     public void updateScreen(char input) {
         if (input == 'w') {
             gw.update(0, 1);
@@ -115,37 +138,20 @@ public class Game {
             gw.update(1, 0);
         }
 
-        // check whether to move one floor up
+        /* Checks whether to move a floor up. If the user moves a floor up, increase
+        * floor variable by one and call generateWorld method and resets the loadPhrase. */
         if (gw.isFloorUp()) {
             floor += 1;
-            generateWorld(); // regenerate the world with a floor increased by one
+            generateWorld();
+            loadPhrase = "";
         }
 
-        // Checks whether avatar have obtained an item and calls related method;
-        // 1) removes obtained item from the existing item on the screen
-        // 2) add to the list of items that the avatar has acquired
+        /* Checks whether avatar have obtained an item and calls related method;
+        * 1) removes obtained item from the existing item on the screen
+        * 2) add to the list of items that the avatar has acquired */
         if (gw.obtain()) {
             fish += 1;
             System.out.println("obtained");
         }
-    }
-
-    /* Load game */
-    public void loadGame(String s) {
-        // Create an Arraylist of characters from the cached string
-        ArrayList<Character> ch = new ArrayList<>();
-        for (char c : s.toCharArray()) {
-            ch.add(c);
-        }
-
-        // Iterate over the cached characters and move accordingly
-        for (char c : ch) {
-            updateScreen(c);
-        }
-    }
-
-    // Get world generated
-    public TETile[][] getWorldGenerated() {
-        return worldGenerated;
     }
 }

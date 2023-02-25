@@ -30,6 +30,12 @@ public class LoadScreenRenderer {
         StdDraw.setPenColor(255, 255, 255);
         StdDraw.text(width * 0.5, height * 0.68, "Generative Dungeon");
 
+        // Subtitle
+        Font subFont = new Font("Monaco", Font.ITALIC, 30);
+        StdDraw.setFont(subFont);
+        StdDraw.setPenColor(90, 90, 90);
+        StdDraw.text(width * 0.5, height * 0.59, "-------- Meow and Boo --------");
+
         // Options
         Font fontSmall = new Font("Monaco", Font.BOLD, 22);
         StdDraw.setFont(fontSmall);

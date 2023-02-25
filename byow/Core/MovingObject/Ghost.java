@@ -11,12 +11,12 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
     private static final int HP = 50;
     private static final TETile TILETYPE = Tileset.GHOST;
     getShortestPath shortestPath;
-    int onOff = 0; // a monster moves one step in every two turns
+    int onOff = 0; // a ghost moves only one step in every two turns
     public Ghost(TETile[][] tiles, Random random) {
         super(tiles, random);
         this.hp = HP;
         create(TILETYPE);
-        shortestPath = new getShortestPath(tiles);
+        shortestPath = new getShortestPath(tiles); // initiates getShortestPath class with tiles
     }
 
     @Override
@@ -24,12 +24,14 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
         super.move(x, y, TILETYPE);
     }
 
+    /** Update method is called in every two turns by turning on the onOff switch in every two turns.
+     * Ghost finds the shortest path to the avatar given x, y coordinate of the ghost and the
+     * x, y coordinate of the target(avatar). Get
+     * @Param int x: x position of the target(avatar)
+     * @Param int y: y position of the target(avatar) */
     @Override
-    /* Move function is called every two turns
-    * @Param int x: x position of the target
-    * @Param int y: y position of the target */
     public void update(int x, int y) {
-        if (onOff == 0) {  // Move every two turns
+        if (onOff == 0) {
             onOff = 1;
         } else {
             char nextMove = shortestPath.getNextMove(getXPos(), getYPos(), x, y);
@@ -38,14 +40,5 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
             onOff = 0;
             move(xMove, yMove, TILETYPE);
         }
-    }
-
-    @Override
-    public void newStart() {
-        int updateX = initialXPos - xPos;
-        int updateY = initialYPos - yPos;
-        super.move(updateX, updateY, TILETYPE);
-        xPos = initialXPos;
-        yPos = initialYPos;
     }
 }

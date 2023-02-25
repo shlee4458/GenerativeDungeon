@@ -1,15 +1,10 @@
 package byow.Core;
 import byow.Core.BackGround.*;
-import byow.Core.FixedObject.Fish;
 import byow.Core.FixedObject.*;
+import byow.Core.MovingObject.*;
 import byow.Core.Graph.*;
-import byow.Core.MovingObject.Avatar;
-import byow.Core.MovingObject.Ghost;
-import byow.Core.BackGround.Staircase;
 import byow.TileEngine.*;
-
 import java.util.*;
-
 public class GenerateWorld {
     int width;
     int height;
@@ -29,7 +24,6 @@ public class GenerateWorld {
     ArrayList<FixedObject> fixedObjects; // existing fixedObjects on the map
     ArrayList<FixedObject> fixedObjectsCache; // cache the fixed objects
 
-
     /* Constructor */
     public GenerateWorld(int width, int height, TETile[][] worldState, int floor, int fishObtained, int hp, Random random) {
         this.width = width;
@@ -39,7 +33,7 @@ public class GenerateWorld {
         this.floor = floor;
         this.ghosts = new ArrayList<>();
         this.fixedObjects = new ArrayList<>();
-        this.numOfRooms = 8 + floor * 1; // number of rooms increase by 2 for every floor
+        this.numOfRooms = 10 + floor * 1;  // number of rooms increase by 2 for every floor
         this.numOfGhosts = Math.min(floor / 2 + 1, 4); // number of ghosts increases in every 2 floors
         this.numOfFish = Math.min(numOfRooms / 5, 4); // one fish in every 6 rooms
         this.fishObtained = fishObtained;
@@ -120,18 +114,6 @@ public class GenerateWorld {
         avatar.update(x, y);
         for (Ghost g : ghosts) {
             g.update(avatar.getXPos(), avatar.getYPos());
-        }
-    }
-
-    /* Changes worldState to given state when the gamer starts a new game */
-    public void newStart(TETile[][] tiles) {
-        this.worldState = tiles;
-        avatar.newStart();
-        for (Ghost g : ghosts) {
-            g.newStart();
-        }
-        for (FixedObject obj : fixedObjectsCache) {
-            obj.newStart();
         }
     }
 

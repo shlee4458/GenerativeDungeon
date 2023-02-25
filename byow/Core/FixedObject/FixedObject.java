@@ -42,7 +42,7 @@ public class FixedObject {
         }
     }
 
-    /* Obtained - chages its location to where avatar cannot access */
+    /* Obtained - changes its location to where avatar cannot access */
     public void obtained() {
         xPos = -1;
         yPos = -1;
