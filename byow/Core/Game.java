@@ -1,6 +1,7 @@
 package byow.Core;
 
-import byow.TileEngine.TERenderer;
+import byow.Core.ScreenRenderer.LoadScreenRenderer;
+import byow.Core.ScreenRenderer.TERenderer;
 import byow.TileEngine.TETile;
 import edu.princeton.cs.algs4.StdDraw;
 
@@ -47,7 +48,7 @@ public class Game {
         worldGenerated = TETile.copyOf(initialWorld); // cache the initial world created
     }
 
-    /* Starts Game or New Game after quitting the game. This part of the code is only executed
+    /** Starts Game or New Game after quitting the game. This part of the code is only executed
     * when the game initially starts or when the user quits the game and starts the new game */
     public void startGame() {
         while (true) {

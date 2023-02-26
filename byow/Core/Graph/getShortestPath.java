@@ -13,6 +13,7 @@ public class getShortestPath {
     boolean[][] tilesVisited; // Used for checking if the tile can be visited
     boolean[][] cacheTilesVisited;
 
+    /** Constructor */
     public getShortestPath(TETile[][] tiles) {
         this.tiles = tiles;
         this.width = tiles.length;
@@ -22,7 +23,7 @@ public class getShortestPath {
         this.queue = new LinkedList<>();
 
         /* Create tiles with default visited boolean values */
-        createTiles();
+        createTilesVisited();
     }
 
     /** Get next move of ghost given the ghost`s current position and the target position.
@@ -43,32 +44,32 @@ public class getShortestPath {
         tilesVisited[sX][sY] = true;
 
         while (!queue.isEmpty()) {
-            // Remove from the front of the linked list
+            /* Remove from the front of the linked list */
             Node n = queue.remove();
             tilesVisited[n.x][n.y] = true;
 
-            // If targetX and targetY is the same from deque return that
+            /* If targetX and targetY is the same from deque return the first visited character */
             if (n.x == tX && n.y == tY) {
                 c = n.visited.remove(1);
                 break;
             }
 
-            // If up is valid add that to the queue with updated node
+            /* If up is valid move, add the updated Node to the queue  */
             if (isValid(n.x, n.y, 0, 1)) {
                 queue.add(n.update(0,1,1,'w'));
             }
 
-            // If down is valid, add to the queue
+            /* If down is valid move, add the updated Node to the queue */
             if (isValid(n.x, n.y, 0, -1)) {
                 queue.add(n.update(0,-1,1,'s'));
             }
 
-            // If left is valid, add to the queue
+            /* If left is valid move, add the updated Node to the queue */
             if (isValid(n.x, n.y, -1, 0)) {
                 queue.add(n.update(-1,0,1,'a'));
             }
-            
-            // If right is valid, add to the queue
+
+            /* If right is valid move, add the updated Node to the queue */
             if (isValid(n.x, n.y, 1, 0)) {
                 queue.add(n.update(1,0,1,'d'));
             }
@@ -76,22 +77,28 @@ public class getShortestPath {
         return c;
     }
 
-    /* Check if moving from (sX, sY) to (sX + mX, sY + mY) is valid */
+    /** Check if moving from (sX, sY) to (sX + mX, sY + mY) is valid. Moving to the new position is valid
+     * if x, y coordinate is within the range of the width and height, and the Position has never been visited.
+     * @Param int sX: X coordinate of the source
+     * @Param int sY: Y coordinate of the source
+     * @Param int mX: marginal increase in the X coordinate of the source
+     * @Param int mY: marginal increase in the Y coordinate of the source
+     * @Return boolean: returns true if (sX, sY) can be moved to (sX + mX, sY + mY), otherwise false */
     public boolean isValid(int sX, int sY, int mX, int mY) {
         int newX = sX + mX;
         int newY = sY + mY;
 
-        return (newX > 0 && newY > 0
-                && newY < height - 1 && newX < width - 1 && !tilesVisited[newX][newY]);
+        return (newX > 0 && newY > 0 && newY < height - 1 &&
+                newX < width - 1 && !tilesVisited[newX][newY]);
     }
 
-    /* Create tiles Visited
-    *  Input true if the tile contains nothing tile or wall tile */
-    public void createTiles() {
+    /** Create tiles Visited by iterating over all the x, y coordinates and mark as visited if the tile is
+     * Nothing tile or Wall tile. Otherwise, mark as not visited. Cache the initial visited tiles mapping. */
+    public void createTilesVisited() {
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
                 if (tiles[x][y].equals(Tileset.NOTHING) || tiles[x][y].equals(Tileset.WALL)) {
-                    tilesVisited[x][y] = true; // Set Nothing tiles and Wall tiles as visited tiles
+                    tilesVisited[x][y] = true;
                 } else {
                     tilesVisited[x][y] = false;
                 }
@@ -100,7 +107,8 @@ public class getShortestPath {
         cacheTilesVisited = copyOf(tilesVisited);
     }
 
-    /* Create a copy of tiles */
+    /** Return a copied instance of the given 2D array of boolean values indicating visited.
+     * @Param boolean[][] tiles: a 2D array indicating tilesVisited */
     public static boolean[][] copyOf(boolean[][] tiles) {
         if (tiles == null) {
             return null;

@@ -1,4 +1,4 @@
-package byow.Core;
+package byow.Core.ScreenRenderer;
 
 import edu.princeton.cs.algs4.StdDraw;
 

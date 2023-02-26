@@ -1,6 +1,7 @@
 package byow.Core;
 
-import byow.TileEngine.TERenderer;
+import byow.Core.ScreenRenderer.TERenderer;
+
 import java.util.Random;
 
 /** Engine class takes an integer command line argument as an input from the user,

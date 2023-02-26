@@ -11,11 +11,7 @@ public class FixedObject {
     int height;
     int xPos;
     int yPos;
-    int initialXPos; // Caches initial starting x position. Used when user restarts the game.
-    int initialYPos; // Caches initial starting y position. Used when user restarts the game.
     Random random;
-    private TETile tileType = Tileset.FISH;
-    private TETile floor = Tileset.FLOOR;
     TETile[][] tiles;
 
     /** Constructor */
@@ -26,7 +22,8 @@ public class FixedObject {
         this.height = tiles[0].length;
     }
 
-    /* create */
+    /** Creates a FixedObject in a random valid position.
+     * @Param TETile tileType: image of the tile to be placed in the position */
     public void create(TETile tileType) {
         int x;
         int y;
@@ -34,45 +31,43 @@ public class FixedObject {
             x = random.nextInt(5, width - 5);
             y = random.nextInt(5, height - 5);
             if (isValidStart(x, y)) {
-                initialXPos = x;
-                initialYPos = y;
                 draw(x, y, tileType);
                 break;
             }
         }
     }
 
-    /* Obtained - changes its location to where avatar cannot access */
+    /** If the fixedObject is obtained by the avatar, moves the fixedObject to the position where the Avatar cannot access */
     public void obtained() {
         xPos = -1;
         yPos = -1;
     }
 
-    /* Draw */
+    /** Draw a fixedObject in the given x, y coordinate and the type of the tile */
     public void draw(int x, int y, TETile tileType) {
         tiles[x][y] = tileType;
     }
 
-    /* Check whether the tile is a valid place for the fixed object */
+    /** Returns true if the tile at x, y coordinate is a floor tile */
     public boolean isValidStart(int x, int y) {
         return tiles[x][y] == Tileset.FLOOR;
     }
 
-    /* toString */
+    /** Returns the name of the object type */
     public String toString() {
         return "Name of the object type";
     }
 
-    /* Get X Position */
+    /** Get X Position of the instance */
     public int getXPos() {
         return xPos;
     }
-    /* Get Y Position */
+    /** Get Y Position of the instance */
     public int getYPos() {
         return yPos;
     }
 
-    /* Get Position of the Fixed Object */
+    /** Return a Position object of x, y coordinate */
     public Position getPosition() {
         return new Position(getXPos(), getYPos());
     }

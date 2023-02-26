@@ -1,6 +1,5 @@
 package byow.Core.Graph;
 
-
 import byow.Core.Position;
 import edu.princeton.cs.algs4.*;
 

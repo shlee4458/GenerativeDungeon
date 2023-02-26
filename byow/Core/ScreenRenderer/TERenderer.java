@@ -1,5 +1,6 @@
-package byow.TileEngine;
+package byow.Core.ScreenRenderer;
 
+import byow.TileEngine.TETile;
 import edu.princeton.cs.algs4.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
