@@ -11,7 +11,7 @@ import java.awt.Font;
  * messing with this renderer, unless you're trying to do something fancy like
  * allowing scrolling of the screen or tracking the avatar or something similar.
  */
-public class TERenderer {
+public class TERenderer implements ScreenRendererInterface {
     private static final int TILE_SIZE = 16;
     private int width;
     private int height;
@@ -27,6 +27,7 @@ public class TERenderer {
      * @param w width of the window in tiles
      * @param h height of the window in tiles.
      */
+
     public void initialize(int w, int h, int xOff, int yOff) {
         this.width = w;
         this.height = h;
@@ -57,6 +58,7 @@ public class TERenderer {
      * @param w width of the window in tiles
      * @param h height of the window in tiles.
      */
+    @Override
     public void initialize(int w, int h) {
         initialize(w, h, 0, 0);
     }

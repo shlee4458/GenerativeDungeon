@@ -62,6 +62,11 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
     /** Get HP of the avatar */
     public int getHP() { return hp; }
 
+    /** Set HP of the avatar */
+    public void setHP(int HP) {
+        this.hp = HP;
+    }
+
     /* Get position of the avatar */
     public Position getPosition() {
         return new Position(getXPos(), getYPos());

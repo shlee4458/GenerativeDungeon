@@ -4,10 +4,11 @@ import edu.princeton.cs.algs4.StdDraw;
 
 import java.awt.*;
 
-public class LoadScreenRenderer {
+public class LoadScreenRenderer implements ScreenRendererInterface {
     int width;
     int height;
 
+    @Override
     public void initialize(int width, int height) {
         this.width = width;
         this.height = height;

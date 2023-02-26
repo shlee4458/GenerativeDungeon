@@ -1,5 +1,6 @@
 package byow.Core;
 
+import byow.Core.ScreenRenderer.GameOverScreenRenderer;
 import byow.Core.ScreenRenderer.LoadScreenRenderer;
 import byow.Core.ScreenRenderer.TERenderer;
 import byow.TileEngine.TETile;
@@ -13,7 +14,7 @@ public class Game {
     int height;
     int floor;
     boolean quit;
-    int numOfSteps;
+    int turns;
     int fish;
     int hp;
     TERenderer ter;
@@ -21,6 +22,7 @@ public class Game {
     TETile[][] initialWorld;
     GenerateWorld gw;
     LoadScreenRenderer ls;
+    GameOverScreenRenderer go;
 
     /** Constructor */
     public Game(int width, int height, TERenderer ter, Random random) {
@@ -31,7 +33,7 @@ public class Game {
         this.quit = false;
         initialWorld = new TETile[width][height];
         this.floor = 1;
-        this.numOfSteps = 0;
+        this.turns = 0;
         this.fish = 0;
         this.hp = 100;
 
@@ -66,10 +68,7 @@ public class Game {
             char input = StdDraw.nextKeyTyped();
             char inputLower = Character.toLowerCase(input);
             if (inputLower == 'n') { // Resets state variables and loadPhrase
-                floor = 1;
-                numOfSteps = 0;
-                fish = 0;
-                loadPhrase = "";
+                setToDefault();
                 generateWorld(); // generates a new dungeon
             }
             gameScreen(loadPhrase);
@@ -78,7 +77,7 @@ public class Game {
 
     /** If the loadPhrase is not empty, calls the loadGame method. If the loadPhrase is an empty String --
      *  user starts the game for the first time or restarts the game after quitting -- waits for user input
-     *  and updates the screen according to user input. For every user input, increases number of steps,
+     *  and updates the screen according to user input. For every user input, increases number of turn,
      *  and loadPhrase. */
     public void gameScreen(String s) {
         char input;
@@ -88,10 +87,10 @@ public class Game {
         }
 
         /* Moves according to the directional value user inputs;
-         * Increases the total step taken for every input */
+         * Increases the total turns taken for every input */
         while (!quit) {
             while (!StdDraw.hasNextKeyTyped()) {
-                ter.renderFrame(initialWorld, floor, numOfSteps, gw.getAvatar().getHP(), fish);
+                ter.renderFrame(initialWorld, floor, turns, gw.getAvatar().getHP(), fish);
             }
             input = StdDraw.nextKeyTyped();
             input = Character.toLowerCase(input);
@@ -101,7 +100,7 @@ public class Game {
                 quit = true;
                 break;
             }
-            numOfSteps += 1;
+            turns += 1;
             loadPhrase += input; // Updates cache
             updateScreen(input); // Updates the screen with given input
         }
@@ -160,5 +159,29 @@ public class Game {
             fish += 1;
             System.out.println("obtained");
         }
+
+        /* If the player`s HP turns 0, renders game over screen */
+        if (gw.getAvatar().getHP() <= 0) {
+            /* Initialize Game Over Screen */
+            go = new GameOverScreenRenderer();
+            go.initialize(this.width, this.height , floor, turns);
+
+            char c = '0';
+            while (c != 'l') {
+                while (!StdDraw.hasNextKeyTyped()) {
+                    go.renderFrame();
+                }
+                c = StdDraw.nextKeyTyped();
+            }
+            System.out.println("hi");
+            setToDefault();
+            startGame();
+        }
+    }
+    public void setToDefault() {
+        hp = 100;
+        turns = 0;
+        fish = 0;
+        loadPhrase = "";
     }
 }
