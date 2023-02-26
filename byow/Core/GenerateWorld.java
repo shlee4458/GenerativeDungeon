@@ -95,7 +95,7 @@ public class GenerateWorld {
 
     /** Generate an Avatar */
     public void generateAvatar() {
-        avatar = new Avatar(worldState, fishObtained, hp,random);
+        avatar = new Avatar(worldState, floor, hp, fishObtained, random);
     }
 
     /** Generate Ghost objects */
@@ -135,6 +135,11 @@ public class GenerateWorld {
             }
         }
         return false;
+    }
+
+    /** Avatar eats the fish; HP increases while the count of the fish decreases */
+    public void eatFish() {
+        getAvatar().eatFish();
     }
 
     /** Returns true if Avatar steps on the Staircase Object */

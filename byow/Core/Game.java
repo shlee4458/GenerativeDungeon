@@ -135,12 +135,20 @@ public class Game {
             gw.update(-1, 0);
         } else if (input == 'd') {
             gw.update(1, 0);
+        } else if (input == 'e') {
+            if (fish >= 1) {
+                gw.eatFish();
+                fish -= 1;
+            } else {
+                System.out.println("You don`t have any fish!");
+            }
         }
 
         /* Checks whether to move a floor up. If the user moves a floor up, increase
         * floor variable by one and call generateWorld method and resets the loadPhrase. */
         if (gw.isFloorUp()) {
             floor += 1;
+            this.hp = gw.getAvatar().getHP();
             generateWorld();
             loadPhrase = "";
         }

@@ -35,7 +35,7 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
             onOff = 1;
         } else {
 
-            int numSteps = random.nextInt(1,3);
+            int numSteps = random.nextInt(1,2);
             while (numSteps > 0) {
                 char nextMove = shortestPath.getNextMove(getXPos(), getYPos(), x, y);
                 int xMove = Position.direction(nextMove).getX();
@@ -46,4 +46,5 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
             }
         }
     }
+
 }
