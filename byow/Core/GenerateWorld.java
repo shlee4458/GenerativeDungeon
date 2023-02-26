@@ -152,6 +152,11 @@ public class GenerateWorld {
         return random;
     }
 
+    /** Get instance variable, Avatar */
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
     /** Get instance variable, worldState */
     public TETile[][] worldState() {
         return worldState;

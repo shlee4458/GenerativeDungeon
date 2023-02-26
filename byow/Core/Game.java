@@ -19,7 +19,6 @@ public class Game {
     TERenderer ter;
     Random random;
     TETile[][] initialWorld;
-    TETile[][] worldGenerated; // caches the current state of world, used when loading the game
     GenerateWorld gw;
     LoadScreenRenderer ls;
 
@@ -92,7 +91,7 @@ public class Game {
          * Increases the total step taken for every input */
         while (!quit) {
             while (!StdDraw.hasNextKeyTyped()) {
-                ter.renderFrame(initialWorld, floor, numOfSteps, hp, fish);
+                ter.renderFrame(initialWorld, floor, numOfSteps, gw.getAvatar().getHP(), fish);
             }
             input = StdDraw.nextKeyTyped();
             input = Character.toLowerCase(input);

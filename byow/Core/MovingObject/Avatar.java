@@ -2,6 +2,7 @@ package byow.Core.MovingObject;
 
 import byow.Core.FixedObject.*;
 import byow.Core.Position;
+import byow.Core.RandomUtils;
 import byow.TileEngine.*;
 
 import java.util.*;
@@ -22,6 +23,15 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
     @Override
     public void move(int x, int y, TETile TILETYPE) {
         super.move(x, y, TILETYPE);
+
+        /* If the Avatar bumps into the ghost object, diminishes HP by value randomly chosen from the
+        * Poisson distribution with mean value of 5 */
+        if (tiles[x + getXPos()][y + getYPos()].equals(Tileset.GHOST)) {
+            int damage = RandomUtils.poisson(random, 5);
+            hp -= damage;
+            System.out.println("Boo!! A Ghost attacked you!");
+            System.out.println("Your HP decreased by: " + damage);
+        }
     }
 
     @Override
