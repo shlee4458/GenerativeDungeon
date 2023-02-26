@@ -1,14 +1,10 @@
 package byow.Core.BackGround;
 
-import byow.Core.FixedObject.FixedObject;
 import byow.Core.Position;
-import byow.TileEngine.TETile;
-import byow.TileEngine.Tileset;
+import byow.TileEngine.*;
 
 import java.util.Random;
-
 public class Staircase {
-
     int width;
     int height;
     int xPos;
@@ -16,6 +12,7 @@ public class Staircase {
     TETile[][] tiles;
     Random random;
 
+    /** Constructor */
     public Staircase(int width, int height, TETile[][] tiles, Random random) {
         this.width = width;
         this.height = height;
@@ -23,8 +20,8 @@ public class Staircase {
         this.random = random;
     }
 
-    /* Finds position where stairs can be drawn;
-    * stairs can be drawn where it is a Floor tile */
+    /** Finds position where staircase can be drawn; staircase can be drawn
+     * where the tile at the x, y coordinate is a floor tile. */
     public Position find() {
         Position stairPos;
         while (true) {
@@ -39,7 +36,7 @@ public class Staircase {
         return stairPos;
     }
 
-    /* draws the staircase in the found position */
+    /** draws the staircase in the position found through the find method */
     public void draw() {
         Position foundPos = find();
         int x = foundPos.getX();

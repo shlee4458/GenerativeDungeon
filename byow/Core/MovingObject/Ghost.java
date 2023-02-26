@@ -26,7 +26,7 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
 
     /** Update method is called in every two turns by turning on the onOff switch in every two turns.
      * Ghost finds the shortest path to the avatar given x, y coordinate of the ghost and the
-     * x, y coordinate of the target(avatar). Get
+     * x, y coordinate of the target(avatar). Ghost can randomly move 1 step to 2 steps.
      * @Param int x: x position of the target(avatar)
      * @Param int y: y position of the target(avatar) */
     @Override
@@ -34,11 +34,16 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
         if (onOff == 0) {
             onOff = 1;
         } else {
-            char nextMove = shortestPath.getNextMove(getXPos(), getYPos(), x, y);
-            int xMove = Position.direction(nextMove).getX();
-            int yMove = Position.direction(nextMove).getY();
-            onOff = 0;
-            move(xMove, yMove, TILETYPE);
+
+            int numSteps = random.nextInt(1,3);
+            while (numSteps > 0) {
+                char nextMove = shortestPath.getNextMove(getXPos(), getYPos(), x, y);
+                int xMove = Position.direction(nextMove).getX();
+                int yMove = Position.direction(nextMove).getY();
+                onOff = 0;
+                move(xMove, yMove, TILETYPE);
+                numSteps -= 1;
+            }
         }
     }
 }

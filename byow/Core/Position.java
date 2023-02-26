@@ -9,7 +9,6 @@ public class Position {
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
-        this.dist = x*x + y*y;
     }
 
     /* get x Position */
@@ -68,19 +67,8 @@ public class Position {
         else { return start; }
     }
 
-    /* Return a position with a bigger X position */
-    public static Position maxXPos(Position start, Position end) {
-        if (start.getX() >= end.getX()) { return start; }
-        else { return end; }
-    }
-
-    /* Return a position with a bigger Y position */
-    public static Position maxYPos(Position start, Position end) {
-        if (start.getY() >= end.getY()) { return start; }
-        else { return end; }
-    }
-
-    /* Return 4 directions of positions */
+    /** Takes player`s directional input as a value, and returns the Position object
+     * that reflects the marginal x, y coordinate changes as an output */
     public static Position direction(char c) {
         Position pos = new Position(0, 0);
 
@@ -98,7 +86,7 @@ public class Position {
         return pos;
     }
 
-    /* Returns whether two positions have the same x-axis value and y-axis value */
+    /* Returns whether two positions have the same x, y coordinate */
     public static boolean samePosition(Position a, Position b) {
         return a.getX() == b.getX() && a.getY() == b.getY();
     }

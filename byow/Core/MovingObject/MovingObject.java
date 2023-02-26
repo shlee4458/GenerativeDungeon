@@ -13,7 +13,6 @@ public class MovingObject implements MovingObjectInterface {
     int yPos;
     int hp;
     Random random;
-    private TETile tileType = Tileset.SAND;
     TETile[][] tiles;
 
     /** Constructor */

@@ -24,8 +24,9 @@ public class GenerateWorld {
     ArrayList<FixedObject> fixedObjects; // existing fixedObjects on the map
     ArrayList<FixedObject> fixedObjectsCache; // cache the fixed objects
 
-    /* Constructor */
-    public GenerateWorld(int width, int height, TETile[][] worldState, int floor, int fishObtained, int hp, Random random) {
+    /** Constructor */
+    public GenerateWorld(int width, int height, TETile[][] worldState,
+                         int floor, int fishObtained, int hp, Random random) {
         this.width = width;
         this.height = height;
         this.worldState = worldState;
@@ -34,12 +35,12 @@ public class GenerateWorld {
         this.ghosts = new ArrayList<>();
         this.fixedObjects = new ArrayList<>();
         this.numOfRooms = 10 + floor * 1;  // number of rooms increase by 2 for every floor
-        this.numOfGhosts = Math.min(floor / 2 + 1, 4); // number of ghosts increases in every 2 floors
+        this.numOfGhosts = Math.min(floor / 2 + 1, 4); // number of ghosts increases in every 2 floors by 1
         this.numOfFish = Math.min(numOfRooms / 5, 4); // one fish in every 6 rooms
         this.fishObtained = fishObtained;
         this.hp = hp;
 
-        fillWithBlank(worldState); // fill with blank
+        fillWithBlank(worldState); // fill with blank tile on the map
     }
 
     /* Fill with Nothing Tile */

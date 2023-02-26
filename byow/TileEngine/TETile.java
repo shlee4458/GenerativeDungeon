@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdDraw;
 import byow.Core.RandomUtils;
 
 /**
- * The TETile object is used to represent a single tile in your world. A 2D array of tiles make up a
+ * The TETile object is used to represent a single tile in the world. A 2D array of tiles make up a
  * board, and can be drawn to the screen using the TERenderer class.
  *
  * All TETile objects must have a character, textcolor, and background color to be used to represent

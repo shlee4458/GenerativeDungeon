@@ -18,7 +18,7 @@ public class FixedObject {
     private TETile floor = Tileset.FLOOR;
     TETile[][] tiles;
 
-    /* Cosntructor */
+    /** Constructor */
     public FixedObject(TETile[][] tiles, Random random) {
         this.tiles = tiles;
         this.random = random;
@@ -56,13 +56,6 @@ public class FixedObject {
     /* Check whether the tile is a valid place for the fixed object */
     public boolean isValidStart(int x, int y) {
         return tiles[x][y] == Tileset.FLOOR;
-    }
-
-    /* Redraws at the initial position when the game starts again */
-    public void newStart() {
-        draw(initialXPos, initialYPos, tileType);
-        xPos = initialXPos;
-        yPos = initialYPos;
     }
 
     /* toString */

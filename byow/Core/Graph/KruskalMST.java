@@ -6,15 +6,17 @@ import java.util.*;
 
 public class KruskalMST {
     private ArrayList<Edge> mst = new ArrayList<>();
+
+    /** Constructor */
     public KruskalMST(Graph G) {
 
-        // Initiate Priority Queue
+        /* Initiate Priority Queue */
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         for (Edge e : G.edges()) {
             pq.add(e);
         }
 
-        // Initiate Weighted Quick Union
+        /* Initiate Weighted Quick Union */
         WeightedQuickUnionUF uf = new WeightedQuickUnionUF(G.V());
         while (!pq.isEmpty() && mst.size() < G.V() - 1) {
             Edge e = pq.poll();
@@ -27,7 +29,7 @@ public class KruskalMST {
         }
     }
 
-    /* Get Minimum Spanning Tree */
+    /** Get Minimum Spanning Tree */
     public ArrayList<Edge> MinimumSpanningTree() {
         return mst;
     }

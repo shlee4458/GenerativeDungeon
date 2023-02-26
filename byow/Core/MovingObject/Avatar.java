@@ -11,6 +11,7 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
     private static final TETile TILETYPE = Tileset.AVATAR;
     HashMap<String, Integer> obtainedItems;
 
+    /** Constructor */
     public Avatar(TETile[][] tiles, int fish, int hp, Random random) {
         super(tiles, random);
         this.hp = hp;
@@ -46,7 +47,7 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
         }
     }
 
-    /* Get number of fish the avatar has acquired */
+    /** Get number of fish the avatar has acquired */
     public int getFish() {
         return obtainedItems.getOrDefault("fish", 0);
     }

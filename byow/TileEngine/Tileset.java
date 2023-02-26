@@ -27,7 +27,7 @@ public class Tileset {
             "/img/fish.png");
     public static final TETile STAIRS = new TETile(',', Color.green, Color.black, "stairs",
             "/img/tile/stairsnew.jpg");
-    public static ArrayList<TETile> fixedObject = new ArrayList<>(List.of(STAIRS));
+    public static ArrayList<TETile> backgroundObject = new ArrayList<>(List.of(STAIRS));
     public static final TETile GRASS = new TETile('"', Color.green, Color.black, "grass");
     public static final TETile WATER = new TETile('≈', Color.blue, Color.black, "water");
     public static final TETile FLOWER = new TETile('❀', Color.magenta, Color.pink, "flower");

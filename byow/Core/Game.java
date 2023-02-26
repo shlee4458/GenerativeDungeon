@@ -7,8 +7,6 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.util.*;
 
 public class Game {
-
-    /* Declare instance variables */
     String loadPhrase;  // cache user input parsed when user requests to load the game
     int width;
     int height;
@@ -73,14 +71,16 @@ public class Game {
                 numOfSteps = 0;
                 fish = 0;
                 loadPhrase = "";
-                generateWorld(); // newly generates a dungeon
+                generateWorld(); // generates a new dungeon
             }
             gameScreen(loadPhrase);
         }
     }
 
-    /** If the loadPhrase is not empty, calls the loadGame method. If there is no loadphrase --
-     *  user starts the game for the first time or restarts the game after quitting. */
+    /** If the loadPhrase is not empty, calls the loadGame method. If the loadPhrase is an empty String --
+     *  user starts the game for the first time or restarts the game after quitting -- waits for user input
+     *  and updates the screen according to user input. For every user input, increases number of steps,
+     *  and loadPhrase. */
     public void gameScreen(String s) {
         char input;
 
@@ -108,7 +108,7 @@ public class Game {
         }
     }
 
-    /** Load game */
+    /** Takes a cached String as an input and parses the character to update the screen */
     public void loadGame(String s) {
         /* Create an Arraylist of characters from the cached string */
         ArrayList<Character> ch = new ArrayList<>();
@@ -122,11 +122,11 @@ public class Game {
         }
     }
 
-    /* Update screen based on user input
-    * 1) w: moves the avatar up by 1
-    * 2) s: moves the avatar down by 1
-    * 2) s: moves the avatar right by 1
-    * 2) s: moves the avatar left by 1 */
+    /** Update screen based on user input.
+     * 1) 'w': moves the avatar up by 1
+     * 2) 's': moves the avatar down by 1
+     * 3) 'a': moves the avatar right by 1
+     * 4) 'd': moves the avatar left by 1 */
     public void updateScreen(char input) {
         if (input == 'w') {
             gw.update(0, 1);

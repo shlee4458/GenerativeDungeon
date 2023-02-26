@@ -11,7 +11,7 @@ public class Graph {
     int E;
     Bag<Edge>[] adj;
 
-    /* Constructor */
+    /** Constructor */
     public Graph(ArrayList<Position> Vertex) {
 
         /* Create containers for; vertices and edges */

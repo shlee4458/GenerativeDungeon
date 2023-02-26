@@ -1,11 +1,8 @@
 package byow.Core.Graph;
 
-import byow.TileEngine.TETile;
-import byow.TileEngine.Tileset;
+import byow.TileEngine.*;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class getShortestPath {
     int width;
@@ -117,9 +114,5 @@ public class getShortestPath {
             i += 1;
         }
         return copy;
-    }
-
-    public boolean[][] getTilesVisited() {
-        return tilesVisited;
     }
 }
