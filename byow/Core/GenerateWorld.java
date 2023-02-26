@@ -22,7 +22,8 @@ public class GenerateWorld {
     Avatar avatar;
     ArrayList<Ghost> ghosts;
     ArrayList<FixedObject> fixedObjects; // existing fixedObjects on the map
-    ArrayList<FixedObject> fixedObjectsCache; // cache the fixed objects
+    ArrayList<FixedObject> fixedObjectsCache; // cache the x, y coordinate of the fixed objects
+    private static final ArrayList<String> FIXEDOBJECT = new ArrayList<>(List.of("Fish"));
 
     /** Constructor */
     public GenerateWorld(int width, int height, TETile[][] worldState,
@@ -39,6 +40,7 @@ public class GenerateWorld {
         this.numOfFish = Math.min(numOfRooms / 5, 4); // one fish in every 6 rooms
         this.fishObtained = fishObtained;
         this.hp = hp;
+        this.fixedObjectsCache = new ArrayList<>();
 
         fillWithBlank(worldState);
     }
@@ -69,7 +71,6 @@ public class GenerateWorld {
         room = new Room(width, height, worldState, numOfRooms, random);
         room.drawAll();
     }
-
 
     /** Generate a staircase that if stepped on by avatar, leads to the next floor */
     public void generateStaircase() {
@@ -109,8 +110,11 @@ public class GenerateWorld {
         for (int num = 0; num < numOfFish; num++) {
             fixedObjects.add(new Fish(worldState, random)); // generate Fish
         }
-        fixedObjectsCache = new ArrayList<>();
-        fixedObjectsCache = (ArrayList<FixedObject>) fixedObjects.clone();
+
+        /* Get the position of the fixed object and add to the fixedObject Map */
+        for (FixedObject obj : fixedObjects) {
+            fixedObjectsCache.add(obj.clone());
+        }
     }
 
     /** Update the current state of the world. */
@@ -121,16 +125,12 @@ public class GenerateWorld {
         }
     }
 
-    /* Check if the avatar has obtained an item
-    * If the avatar has obtained the item, remove the item from the ArrayList of existing item
-    * and add it to the list of obtained items for the avatar */
+    /** Check if the avatar has obtained an item. If the avatar has obtained the item, remove the item
+     * from the ArrayList of existing item and add it to the list of obtained items for the avatar */
     public boolean obtain() {
-
-        // Use clone; fixedObjectsCache to iterate to prevent concurrent modification error
         for (FixedObject obj : fixedObjectsCache) {
             if (isObtain(avatar, obj)) {
                 avatar.obtain(obj); // avatar obtains the item
-                fixedObjects.remove(obj);
                 return true;
             }
         }
@@ -138,12 +138,14 @@ public class GenerateWorld {
     }
 
     /** Returns true if Avatar steps on the Staircase Object */
-    public boolean isFloorUp()
-    { return Position.samePosition(avatar.getPosition(), staircase.getPosition()); }
+    public boolean isFloorUp() {
+        return Position.samePosition(avatar.getPosition(), staircase.getPosition());
+    }
 
     /** Returns true if Avatar steps on the fixedObject */
-    public boolean isObtain(Avatar avatar, FixedObject obj)
-    { return Position.samePosition(avatar.getPosition(), obj.getPosition()); }
+    public boolean isObtain(Avatar avatar, FixedObject obj) {
+        return Position.samePosition(avatar.getPosition(), obj.getPosition());
+    }
 
     /** Get instance variable, Random */
     public Random getRandom() {

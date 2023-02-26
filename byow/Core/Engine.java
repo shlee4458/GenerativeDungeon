@@ -22,10 +22,9 @@ public class Engine {
         this.random =  new Random(seed);
     }
 
-    /** Initiate game class, generates the dungeon, and starts the game */
+    /** Initiate game class, and starts the game */
     public void interactWithKeyboard() {
         Game g = new Game(WIDTH, HEIGHT, ter, random);
-        g.generateWorld();
         g.startGame();
     }
 }

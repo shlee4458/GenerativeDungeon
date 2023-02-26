@@ -99,7 +99,7 @@ public class TETile {
     }
 
     /** Character representation of the tile. Used for drawing in text mode.
-     * @return character representation
+     * @Return character representation
      */
     public char character() {
         return character;
@@ -108,7 +108,7 @@ public class TETile {
     /**
      * Description of the tile. Useful for displaying mouseover text or
      *      * testing that two tiles represent the same tpe of thing.
-     * @return description of the tile
+     * @Return description of the tile
      */
     public String description() {
         return description;
@@ -118,11 +118,11 @@ public class TETile {
      * Creates a copy of the given tile with a slightly different text color. The new
      * color will have a red value that is within dr of the current red value,
      * and likewise with dg and db.
-     * @param t the tile to copy
-     * @param dr the maximum difference in red value
-     * @param dg the maximum difference in green value
-     * @param db the maximum difference in blue value
-     * @param r the random number generator to use
+     * @Param t the tile to copy
+     * @Param dr the maximum difference in red value
+     * @Param dg the maximum difference in green value
+     * @Param db the maximum difference in blue value
+     * @Param r the random number generator to use
      */
     public static TETile colorVariant(TETile t, int dr, int dg, int db, Random r) {
         Color oldColor = t.textColor;
@@ -149,8 +149,8 @@ public class TETile {
      * drawn using the tile rendering engine, this print method has to
      * print in what might seem like backwards order (so that the 0th
      * row gets printed last).
-     * @param world the 2D world to print
-     * @return string representation of the world
+     * @Param world the 2D world to print
+     * @Return string representation of the world
      */
     public static String toString(TETile[][] world) {
         int width = world.length;
@@ -172,7 +172,7 @@ public class TETile {
 
     /**
      * Makes a copy of the given 2D tile array.
-     * @param tiles the 2D array to copy
+     * @Param tiles the 2D array to copy
      **/
     public static TETile[][] copyOf(TETile[][] tiles) {
         if (tiles == null) {

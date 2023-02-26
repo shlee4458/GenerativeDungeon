@@ -31,6 +31,8 @@ public class FixedObject {
             x = random.nextInt(5, width - 5);
             y = random.nextInt(5, height - 5);
             if (isValidStart(x, y)) {
+                this.setX(x);
+                this.setY(y);
                 draw(x, y, tileType);
                 break;
             }
@@ -59,16 +61,36 @@ public class FixedObject {
     }
 
     /** Get X Position of the instance */
-    public int getXPos() {
+    public int getX() {
         return xPos;
     }
+
     /** Get Y Position of the instance */
-    public int getYPos() {
+    public int getY() {
         return yPos;
+    }
+
+    /** Set X position of the instance */
+    public void setX(int x) {
+        xPos = x;
+    }
+    /** Set Y position of the instacne */
+    public void setY(int y) {
+        yPos = y;
+    }
+
+    /** Clone a fixed object*/
+    public FixedObject clone() {
+        FixedObject fixedObject = new FixedObject(tiles, random);
+        fixedObject.setX(this.getX());
+        fixedObject.setY(this.getY());
+        return fixedObject;
     }
 
     /** Return a Position object of x, y coordinate */
     public Position getPosition() {
-        return new Position(getXPos(), getYPos());
+        return new Position(getX(), getY());
     }
+
+
 }

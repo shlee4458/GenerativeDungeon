@@ -31,9 +31,10 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
 
     /** Executed when the avatar obtains a fixed object. If the obtained item is fish, increases
     * the count of the fish acquired by one, and stores that item in the */
-    public void obtain(FixedObject item) {
-        obtainedItems.put(item.toString(), obtainedItems.getOrDefault(item, 0) + 1);
-        item.obtained();
+    public void obtain(FixedObject obj) {
+        obj.obtained();
+        String objType = obj.toString();
+        obtainedItems.put(objType,obtainedItems.getOrDefault(objType, 0) + 1);
     }
 
     /** When the avatar eats the fish, the avatar`s HP increases randomly between 0 to 10,

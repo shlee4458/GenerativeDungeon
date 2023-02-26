@@ -14,6 +14,7 @@ public class Fish extends FixedObject {
         create(TILETYPE);
     }
 
+
     @Override
     public String toString() {
         return "Fish";

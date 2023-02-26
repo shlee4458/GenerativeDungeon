@@ -45,7 +45,6 @@ public class Game {
     public void generateWorld() {
         gw = new GenerateWorld(width, height, initialWorld, floor, fish, hp, this.random);
         initialWorld = gw.generate();
-        worldGenerated = TETile.copyOf(initialWorld); // cache the initial world created
     }
 
     /** Starts Game or New Game after quitting the game. This part of the code is only executed

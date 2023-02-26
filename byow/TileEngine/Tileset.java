@@ -23,7 +23,7 @@ public class Tileset {
 
     public static final TETile GHOST = new TETile(',', Color.green, Color.black, "ghost",
             "/img/ghost.jpg");
-    public static final TETile FISH = new TETile(',', Color.green, Color.black, "fish",
+    public static final TETile FISH = new TETile(',', Color.green, Color.black, "Fish",
             "/img/fish.png");
     public static final TETile STAIRS = new TETile(',', Color.green, Color.black, "stairs",
             "/img/tile/stairsnew.jpg");

@@ -1,5 +1,7 @@
 package byow.Core;
 
+import byow.Core.FixedObject.FixedObject;
+
 public class Position {
     int x;
     int y;
@@ -83,6 +85,11 @@ public class Position {
             pos.changePos(0, 0);
         }
         return pos;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + getX() + ", " + getY() + ")";
     }
 
     /** Returns whether two positions have the same x, y coordinate */
