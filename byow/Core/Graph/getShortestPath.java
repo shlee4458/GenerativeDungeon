@@ -36,7 +36,7 @@ public class getShortestPath {
         * The ghost does not move if avatar and the ghost are placed in the same tile. */
         if (sX == tX && sY == tY) { return ' '; }
 
-        char c = 'a';
+        char c = 'a'; // placeholder
         Node updatedSource = source.update(sX, sY, 0, c);
         queue.clear();
         queue.add(updatedSource);
