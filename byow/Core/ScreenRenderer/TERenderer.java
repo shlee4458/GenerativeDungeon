@@ -5,12 +5,6 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 
-/**
- * Utility class for rendering tiles. You do not need to modify this file. You're welcome
- * to, but be careful. We strongly recommend getting everything else working before
- * messing with this renderer, unless you're trying to do something fancy like
- * allowing scrolling of the screen or tracking the avatar or something similar.
- */
 public class TERenderer implements ScreenRendererInterface {
     private static final int TILE_SIZE = 16;
     private int width;
@@ -54,7 +48,7 @@ public class TERenderer implements ScreenRendererInterface {
      * you then subsequently call renderFrame with a TETile[50][25] array, it will
      * leave 10 tiles blank on the right side and 5 tiles blank on the top side. If
      * you want to leave extra space on the left or bottom instead, use the other
-     * initializatiom method.
+     * initialization method.
      * @param w width of the window in tiles
      * @param h height of the window in tiles.
      */
@@ -78,8 +72,6 @@ public class TERenderer implements ScreenRendererInterface {
      *               startY+1    [0][1]  |  [1][1]  |  [2][1]  | .... | [N-1][1]
      *                 startY    [0][0]  |  [1][0]  |  [2][0]  | .... | [N-1][0]
      *
-     * By varying xOffset, yOffset, and the size of the screen when initialized, you can leave
-     * empty space in different places to leave room for other information, such as a GUI.
      * This method assumes that the xScale and yScale have been set such that the max x
      * value is the width of the screen in tiles, and the max y value is the height of
      * the screen in tiles.

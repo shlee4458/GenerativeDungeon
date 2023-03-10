@@ -8,13 +8,13 @@ import byow.TileEngine.Tileset;
 import java.util.Random;
 
 public class Ghost extends MovingObject implements MovingObjectInterface {
-    private static final int HP = 50;
     private static final TETile TILETYPE = Tileset.GHOST;
     getShortestPath shortestPath;
     int onOff = 0; // a ghost moves only one step in every two turns
+
+    /** Constructor */
     public Ghost(TETile[][] tiles, Random random) {
         super(tiles, random);
-        this.hp = HP;
         create(TILETYPE);
         shortestPath = new getShortestPath(tiles); // initiates getShortestPath class with tiles
     }
@@ -34,7 +34,6 @@ public class Ghost extends MovingObject implements MovingObjectInterface {
         if (onOff == 0) {
             onOff = 1;
         } else {
-
             int numSteps = random.nextInt(1,2);
             while (numSteps > 0) {
                 char nextMove = shortestPath.getNextMove(getXPos(), getYPos(), x, y);

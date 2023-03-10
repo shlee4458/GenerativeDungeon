@@ -8,6 +8,12 @@ import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.*;
 
+/** Game Class takes user Input and updates the screen by communicating with GenerateWorld Class.
+ * In the Game Class, renderers are initiates and renderFrame is called according to user's input.
+ * Renderers include;
+ * 1) LoadRender - loading screen that is displayed until user input is received
+ * 2) TERenderer - game play screen that includes tiles, ghosts, avatars and fish
+ * 3) GameOverScreenRenderer - game over screen that is displayed when the avatar dies */
 public class Game {
     int width;
     int height;

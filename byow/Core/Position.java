@@ -1,7 +1,5 @@
 package byow.Core;
 
-import byow.Core.FixedObject.FixedObject;
-
 public class Position {
     int x;
     int y;

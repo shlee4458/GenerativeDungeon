@@ -5,6 +5,11 @@ import byow.Core.MovingObject.*;
 import byow.Core.Graph.*;
 import byow.TileEngine.*;
 import java.util.*;
+
+/** GenerateWorld Class contains method to create and update its components;
+ * BackGround Class - Room, Hallway, Staircase
+ * MovingObject Class - Avatar, Ghost
+ * FixedObject Class - Fish */
 public class GenerateWorld {
     int width;
     int height;
