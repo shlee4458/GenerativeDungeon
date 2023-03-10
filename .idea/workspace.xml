@@ -170,9 +170,9 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.TestgetShortestPath" />
       <item itemvalue="JUnit.TestGraph" />
       <item itemvalue="JUnit.TestRoom" />
+      <item itemvalue="JUnit.TestgetShortestPath" />
       <item itemvalue="JUnit.byow.Core in proj3" />
     </list>
     <recent_temporary>

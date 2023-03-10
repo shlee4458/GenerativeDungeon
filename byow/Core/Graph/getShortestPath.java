@@ -97,7 +97,8 @@ public class getShortestPath {
     public void createTilesVisited() {
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
-                if (tiles[x][y].equals(Tileset.NOTHING) || tiles[x][y].equals(Tileset.WALL)) {
+                if (tiles[x][y].equals(Tileset.NOTHING) || tiles[x][y].equals(Tileset.WALL) ||
+                        tiles[x][y].equals(Tileset.STAIRS)) {
                     tilesVisited[x][y] = true;
                 } else {
                     tilesVisited[x][y] = false;
