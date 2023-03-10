@@ -93,12 +93,13 @@ public class getShortestPath {
     }
 
     /** Create tiles Visited by iterating over all the x, y coordinates and mark as visited if the tile is
-     * Nothing tile or Wall tile. Otherwise, mark as not visited. Cache the initial visited tiles mapping. */
+     * Nothing tile or Wall tile or Stairs tile or Ghost tile. Otherwise, mark as not visited. Cache the
+     * initial visited tiles mapping. */
     public void createTilesVisited() {
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[0].length; y++) {
                 if (tiles[x][y].equals(Tileset.NOTHING) || tiles[x][y].equals(Tileset.WALL) ||
-                        tiles[x][y].equals(Tileset.STAIRS)) {
+                        tiles[x][y].equals(Tileset.STAIRS) || tiles[x][y].equals(Tileset.GHOST)) {
                     tilesVisited[x][y] = true;
                 } else {
                     tilesVisited[x][y] = false;

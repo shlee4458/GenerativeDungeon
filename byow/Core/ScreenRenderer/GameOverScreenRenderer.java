@@ -30,7 +30,7 @@ public class GameOverScreenRenderer extends LoadScreenRenderer {
         Font fontBig = new Font("Monaco", Font.BOLD, 40);
         StdDraw.setFont(fontBig);
         StdDraw.setPenColor(255, 0, 0);
-        StdDraw.text(width * 0.5, height * 0.68, "Game Over!");
+        StdDraw.text(width * 0.5, height * 0.68, "Game Over !");
 
         // Score
         Font subFont = new Font("Monaco", Font.ITALIC, 20);

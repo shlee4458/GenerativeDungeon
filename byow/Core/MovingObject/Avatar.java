@@ -29,7 +29,7 @@ public class Avatar extends MovingObject implements MovingObjectInterface {
         /* If the Avatar bumps into the ghost object, diminishes HP by value randomly chosen from the
         * Poisson distribution with mean value of 5 + floor * 0.5 */
         if (tiles[x + getXPos()][y + getYPos()].equals(Tileset.GHOST)) {
-            int damage = RandomUtils.poisson(random, 5 + floor * 0.5);
+            int damage = RandomUtils.poisson(random, 10 + floor * 0.5);
             hp -= damage;
             System.out.println("Boo!! A Ghost attacked you!");
             System.out.println("Your HP decreased by: " + damage);

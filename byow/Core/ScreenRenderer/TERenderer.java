@@ -106,7 +106,7 @@ public class TERenderer implements ScreenRendererInterface {
         StdDraw.setPenColor(255, 255, 255);
 
         StdDraw.textRight(width * 0.95, height * 0.9,
-                "Steps: " + numOfSteps + " / " + "Floor: " + floor );
+                "Turns: " + numOfSteps + " / " + "Floor: " + floor );
         StdDraw.textLeft(width * 0.05, height * 0.9,
                 "HP: " + hp + " / " + "Fish: " + numOfFishObtained);
     }
