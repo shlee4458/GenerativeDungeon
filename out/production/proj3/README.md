@@ -10,13 +10,10 @@
 # Table of Contents
 
 - [About](#About)
-- [Features](#features)
-- [Feedback](#feedback)
-- [Contributors](#contributors)
-- [Build Process](#build-process)
-- [Backers](#backers-)
-- [Sponsors](#sponsors-)
-- [Acknowledgments](#acknowledgments)
+- [Libraries](#Libraries)
+- [Game Structure](#game-structure)
+- [Implementation](#implementation)
+- [More Game Screens](#more-game-screens)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -82,7 +79,7 @@ Once valid start position and the end position is found, draws the room by repla
 Staircase is an object that can take the avatar up the floor in the dungeon. By stepping on the staircase, new room is generated with varied fish position and the ghosts position. Staircase is created by first finding the valid x, y coordinate in the map. A coordinate is valid if the tile on the x, y coordinate is floor tile. 
 
 ### Hallway Object
-Hallway Object uses the Kruskal`s minimum spanning tree algorithm to find the edges connecting the rooms. Each room is represented by the middle position and the weights of each edge is calculated by summing the difference of x coordinate power of two and the difference of y coordinate. ArrayList of edges from KruskalMST Object is translated into the HashMap of Position on one end of the edge as a key and Position on the otherside of the edge as a value.
+Hallway Object uses the Kruskal`s minimum spanning tree algorithm to find the edges connecting the rooms. Each room is represented by the middle position and the weights of each edge is calculated by summing the difference of x coordinate power of two and the difference of y coordinate. ArrayList of edges from KruskalMST Object is translated into the HashMap of Position on one end of the edge as a key and Position on the otherside of the edge as a value. For detailed Kruskal Algorithm implementation, check [here](#kruskals-minimum-spanning-tree-algorithm).
 
 Horizontal Hallway is drawn if two Positions in the minimum spanning tree has the same x coordinate. If y coordinate is the same, vertical Hallway is drawn. If both are not the case, L-shaped Hallway is drawn. As a default, horizontal Hallway is drawn at the minimum y coordinate value of the two, while vertical Hallway is drawn depending on whether the two Positions are located in the 1st and 3rd quadrant or in the 2nd and 4th quadrant; if 1st and 3rd quadrant, draws on the maximum x value of the two positions, otherwise on the minimum x value of the two positions.
 
@@ -97,54 +94,28 @@ Avatar can recover HP by eating the fish that it has acquired. The HP increases 
 
 ### Ghost Object
 Ghost object extends from the MovingObject Class. A ghost is created randomly on floor tile. Number of ghosts varies by the floor as described [here](#about). An individual Ghost object moves in the shortest path to the Avatar. Shortest path is calculated by
-Breath First Search. For the detailed implementation of the algorithm, check [here](#graph-algorithms)
+Breath First Search. For the detailed implementation of the algorithm, check [here](#graph-algorithms).
 
 ## Graph Algorithms
 ### Kruskal`s Minimum Spanning Tree Algorithm
+I used Priority Queue and WeightedQuickUnionUF data structure from princeton algs4 library for the algorithm. The algorthm first initiates the Priority Queue and adds all the Edges from the graph -- Edge class contains overriding compareTo method that compares the weight of the edge when sorting. Edge with the smallest weight is added to the WeightedQuickUnionUf data structure until either the priority queue is empty or the size of the ArrayList that stores the edges of the minimum spanning tree becomes number of vertex - 1. If adding an edge to the WeightedQuickUnionUF makes the Minimum Spanning Tree connected, that edge is not added to the Minnimum Spanning Tree. 
 
 ### Breath First Search - Shortest Path Algorithm
+This algorithm finds the shortest path from a Ghost to the Avatar by using Queue data strucutre to conduct breath first search on the tiles that can be visited. Tiles can be visited if the tile is not a Nothing tile or a Wall tile or a Stairs tile or a Ghost tile and have not been visited. Initializing a getShortestPath object will create a 2D array of tiles that stores 1 at the tile that cannot be visited and 0 at the tile that can be visited. The queue will be initialized with the Ghost's x, y coordinate as a source and coordinates that can be visited from the source will be added to the queue. Search comes to an end when the ghost reaches the Avatar.  
 
-
-
-
-
-
-
-
-## Build Process
-
-- Follow the [React Native Guide](https://facebook.github.io/react-native/docs/getting-started.html) for getting started building a project with native code. **A Mac is required if you wish to develop for iOS.**
-- Clone or download the repo
-- `yarn` to install dependencies
-- `yarn run link` to link react-native dependencies
-- `yarn start:ios` to start the packager and run the app in the iOS simulator (`yarn start:ios:logger` will boot the application with [redux-logger](<https://github.com/evgenyrodionov/redux-logger>))
-- `yarn start:android` to start the packager and run the app in the the Android device/emulator (`yarn start:android:logger` will boot the application with [redux-logger](https://github.com/evgenyrodionov/redux-logger))
-
-Please take a look at the [contributing guidelines](./CONTRIBUTING.md) for a detailed process on how to build your application as well as troubleshooting information.
-
-**Development Keys**: The `CLIENT_ID` and `CLIENT_SECRET` in `api/index.js` are for development purposes and do not represent the actual application keys. Feel free to use them or use a new set of keys by creating an [OAuth application](https://github.com/settings/applications/new) of your own. Set the "Authorization callback URL" to `gitpoint://welcome`.
-
-## Backers [![Backers on Open Collective](https://opencollective.com/git-point/backers/badge.svg)](#backers)
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/git-point#backer)]
-
-<a href="https://opencollective.com/git-point#backers" target="_blank"><img src="https://opencollective.com/git-point/backers.svg?width=890"></a>
-
-## Sponsors [![Sponsors on Open Collective](https://opencollective.com/git-point/sponsors/badge.svg)](#sponsors)
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/git-point#sponsor)]
-
-<a href="https://opencollective.com/git-point/sponsor/0/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/1/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/2/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/3/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/4/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/5/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/6/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/7/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/8/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/9/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/9/avatar.svg"></a>
-
-## More game screen
-
-Thanks to [JetBrains](https://www.jetbrains.com) for supporting us with a [free Open Source License](https://www.jetbrains.com/buy/opensource).
+# More game screens
+<p align="center">
+    <img alt="Load Screen" title="Load Screen" src="img/sample/loadscreen.png" width="500">
+    <br>
+    <i>- Sample Load Screen -</i>
+</p>
+<p align="center">
+    <img alt="Game Over Screen" title="Game Over Screen" src="img/sample/gameoverscreen.png" width="500">
+    <br>
+    <i>- Sample Game Over Screen -</i>
+</p>
+<p align="center">
+    <img alt="highest floor" title="highest floor" src="img/sample/highest.png" width="500">
+    <br>
+    <i>- Highest floor I have reached.. -</i>
+</p>

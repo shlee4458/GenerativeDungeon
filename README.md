@@ -117,5 +117,5 @@ This algorithm finds the shortest path from a Ghost to the Avatar by using Queue
 <p align="center">
     <img alt="highest floor" title="highest floor" src="img/sample/highest.png" width="500">
     <br>
-    <i>- Highest floor I have reached.. -</i>
+    <i>- Highest floor I have reached.. I died right after taking the screen shot..</i>
 </p>
