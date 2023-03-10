@@ -37,16 +37,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/cs61b/skeleton-fa22/GenerativeDungeon&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/learn/Project/GenerativeDungeon/library",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="byow.Core" />
@@ -170,9 +170,9 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.TestgetShortestPath" />
       <item itemvalue="JUnit.TestGraph" />
       <item itemvalue="JUnit.TestRoom" />
-      <item itemvalue="JUnit.TestgetShortestPath" />
       <item itemvalue="JUnit.byow.Core in proj3" />
     </list>
     <recent_temporary>

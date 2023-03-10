@@ -9,7 +9,6 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.util.*;
 
 public class Game {
-    String loadPhrase;  // cache user input parsed when user requests to load the game
     int width;
     int height;
     int floor;
@@ -71,7 +70,7 @@ public class Game {
                 setToDefault();
                 generateWorld(); // generates a new dungeon
             }
-            gameScreen(loadPhrase);
+            gameScreen();
         }
     }
 
@@ -79,12 +78,8 @@ public class Game {
      *  user starts the game for the first time or restarts the game after quitting -- waits for user input
      *  and updates the screen according to user input. For every user input, increases number of turn,
      *  and loadPhrase. */
-    public void gameScreen(String s) {
+    public void gameScreen() {
         char input;
-
-        if (s.length() > 0) {
-            loadGame(s);
-        }
 
         /* Moves according to the directional value user inputs;
          * Increases the total turns taken for every input */
@@ -101,22 +96,7 @@ public class Game {
                 break;
             }
             turns += 1;
-            loadPhrase += input; // Updates cache
             updateScreen(input); // Updates the screen with given input
-        }
-    }
-
-    /** Takes a cached String as an input and parses the character to update the screen */
-    public void loadGame(String s) {
-        /* Create an Arraylist of characters from the cached string */
-        ArrayList<Character> ch = new ArrayList<>();
-        for (char c : s.toCharArray()) {
-            ch.add(c);
-        }
-
-        /* Iterate over the cached characters and move accordingly */
-        for (char c : ch) {
-            updateScreen(c);
         }
     }
 
@@ -149,7 +129,6 @@ public class Game {
             floor += 1;
             this.hp = gw.getAvatar().getHP();
             generateWorld();
-            loadPhrase = "";
         }
 
         /* Checks whether avatar have obtained an item and calls related method;
@@ -157,7 +136,7 @@ public class Game {
         * 2) add to the list of items that the avatar has acquired */
         if (gw.obtain()) {
             fish += 1;
-            System.out.println("obtained");
+            System.out.println("Fish Obtained!");
         }
 
         /* If the player`s HP turns 0, renders game over screen */
@@ -182,6 +161,5 @@ public class Game {
         hp = 100;
         turns = 0;
         fish = 0;
-        loadPhrase = "";
     }
 }

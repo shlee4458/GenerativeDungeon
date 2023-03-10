@@ -36,7 +36,7 @@ public class GameOverScreenRenderer extends LoadScreenRenderer {
         Font subFont = new Font("Monaco", Font.ITALIC, 20);
         StdDraw.setFont(subFont);
         StdDraw.setPenColor(255, 255, 0);
-        StdDraw.text(width * 0.5, height * 0.54, "You played total " + turns + " turns.");
+        StdDraw.text(width * 0.5, height * 0.54, "You played total of " + turns + " turns.");
         StdDraw.text(width * 0.5, height * 0.50, "You reached the floor " + floor + ".");
 
         // Option

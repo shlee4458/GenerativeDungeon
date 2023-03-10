@@ -10,7 +10,6 @@ import java.util.Random;
  *  acts as a controller for a whole game program.
  * */
 
-
 public class Engine {
     TERenderer ter = new TERenderer();
     public static final int WIDTH = 60;
